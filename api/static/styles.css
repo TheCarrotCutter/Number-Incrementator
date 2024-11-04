@@ -6,3 +6,8 @@
 #result {
     /* Add your desired styles here */
 }
+
+.counter {
+    width: 50000;
+    height: 50000;
+}
