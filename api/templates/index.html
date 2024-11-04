@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head
+<head>
     <title>Interactive Flask Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Interactive Form</h1>
-    <form id="myForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-
-        <button type="submit">Submit</button>
+    <h1 id="counter">0</h1>
+        <button type="button" onclick=increment()>Increment</button>
     </form>
 
     <div id="result"></div>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
