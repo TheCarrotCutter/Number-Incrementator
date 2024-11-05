@@ -10,8 +10,8 @@ function increment() {
 
 function increment_upgrade() {
     number -= 100;
-    update();
     increment_ammount += 1
+    update();
 }
 // Function to update the display and save the new value to localStorage
 function update() {
