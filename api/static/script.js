@@ -1,10 +1,13 @@
 // Load the stored counter value from localStorage, default to 0 if not found
 let number = parseInt(localStorage.getItem('number_save')) || 0; 
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
+let total = parseInt(localStorage.getItem('total_save')) || 0; 
+
 
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by 1
+    total += increment_ammount;
     update();    // Update the display and check the button state
 }
 
@@ -17,8 +20,10 @@ function increment_upgrade() {
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
+    document.getElementById('main_button').textContent = 'Total:' + total;
     localStorage.setItem('number_save', number);  // Save the updated number to localStorage
     localStorage.setItem('increment_ammount_save', increment_ammount);
+    localStorage.setItem('total_save', total);
 
     if (number < 0) {
         number = 0
