@@ -16,7 +16,7 @@ function increment_upgrade() {
 // Function to update the display and save the new value to localStorage
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
-    document.getElementById('counter').textcontent = 'Increment by +' + increment_ammount;
+    document.getElementById('counter').textContent = 'Increment by +' + increment_ammount;
     localStorage.setItem('number_save', number);  // Save the updated number to localStorage
     localstorage.setitem('increment_ammount_save', increment_ammount);
 
