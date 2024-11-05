@@ -13,7 +13,7 @@ function update() {
     localStorage.setItem('counter', number);  // Save the updated number to localStorage
 
     // Get the button element
-    const button = document.getElementById('Increment_Upgrade'); 
+    const button = document.getElementById('increment_upgrade'); 
 
     // Disable/Enable the button based on the value of `number`
     if (number < 100) {
