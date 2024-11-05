@@ -20,7 +20,7 @@ function increment_upgrade() {
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
-    document.getElementById('total').textContent = 'Total:' + total;
+    document.getElementById('total').textContent = 'Total: ' + total;
     localStorage.setItem('number_save', number);  // Save the updated number to localStorage
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
