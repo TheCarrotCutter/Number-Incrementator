@@ -8,8 +8,3 @@ function increment() {
 function update() {
     document.getElementById('counter').textContent = number;
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-            let number = 0;
-            update()
-}
