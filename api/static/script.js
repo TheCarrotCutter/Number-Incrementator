@@ -18,7 +18,7 @@ function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     localStorage.setItem('number_save', number);  // Save the updated number to localStorage
-    localstorage.setitem('increment_ammount_save', increment_ammount);
+    localStorage.setItem('increment_ammount_save', increment_ammount);
 
     if (number < 0) {
         number = 0
