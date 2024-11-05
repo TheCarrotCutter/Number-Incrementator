@@ -1,7 +1,7 @@
 let number = 0;
 
 function increment() {
-    number+=1;
+    number+=0;
     update()
 }
 
