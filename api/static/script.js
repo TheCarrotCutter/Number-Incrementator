@@ -10,5 +10,5 @@ function update() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    let number = 0
+    number = 0
 });
