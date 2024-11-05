@@ -1,4 +1,4 @@
-let number = 1;
+let number = 0;
 
 function increment() {
     number+=1;
