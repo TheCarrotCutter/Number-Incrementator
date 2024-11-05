@@ -4,7 +4,7 @@ let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save'))
 
 // Function to increment the counter
 function increment() {
-    number += 1; // Increment the number by 1
+    number += increment_ammount; // Increment the number by 1
     update();    // Update the display and check the button state
 }
 
