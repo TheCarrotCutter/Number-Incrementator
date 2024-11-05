@@ -16,6 +16,9 @@ function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
     localStorage.setItem('counter', number);  // Save the updated number to localStorage
 
+    if (number < 0) {
+        number = 0
+    }
     // Get the button element
     const button = document.getElementById('increment_upgrade'); 
 
