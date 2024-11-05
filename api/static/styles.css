@@ -12,3 +12,8 @@
     height: 35px;
     font-size: 120%;
 }
+
+.total {
+    top: 50%;
+    right: 0;
+}
