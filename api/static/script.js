@@ -1,4 +1,5 @@
-let number = 0;
+let number = parseInt(localStorage.getItem('counter')) || 0; // Default to 0 if no value exists in localStorage
+
 
 function increment() {
     number+=1;
