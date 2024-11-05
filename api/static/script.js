@@ -11,4 +11,5 @@ function update() {
 
 document.addEventListener('DOMContentLoaded', function() {
     number = 0;
+    update()
 });
