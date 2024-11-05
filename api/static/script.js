@@ -8,7 +8,9 @@ function increment() {
 }
 
 function increment_upgrade() {
-
+    number -= 100;
+    update();
+}
 // Function to update the display and save the new value to localStorage
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
