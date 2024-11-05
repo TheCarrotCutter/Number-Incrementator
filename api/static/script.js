@@ -1,5 +1,6 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = parseInt(localStorage.getItem('counter')) || 0; 
+let number = parseInt(localStorage.getItem('number_save')) || 0; 
+let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
 
 // Function to increment the counter
 function increment() {
@@ -10,11 +11,14 @@ function increment() {
 function increment_upgrade() {
     number -= 100;
     update();
+    increment_ammount += 1
 }
 // Function to update the display and save the new value to localStorage
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
-    localStorage.setItem('counter', number);  // Save the updated number to localStorage
+    document.getElementById('counter').textcontent = 'Increment by +' + increment_ammount;
+    localStorage.setItem('number_save', number);  // Save the updated number to localStorage
+    localstorage.setitem('increment_ammount_save', increment_ammount);
 
     if (number < 0) {
         number = 0
