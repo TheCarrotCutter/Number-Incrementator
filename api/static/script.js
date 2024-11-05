@@ -12,6 +12,6 @@ function update() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    number = 0;
+    number = parseInt(localStorage.getItem('counter')) || 0; // Default to 0 if no value exists in localStorage
     update()
 });
