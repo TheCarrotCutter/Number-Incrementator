@@ -7,6 +7,8 @@ function increment() {
     update();    // Update the display and check the button state
 }
 
+function increment_upgrade() {
+
 // Function to update the display and save the new value to localStorage
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
