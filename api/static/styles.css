@@ -24,3 +24,14 @@ button {
     width: auto;
     height: 28px;
 }
+
+.increment_upgrade_container {
+    display: flex;            /* Use flexbox to align the label and button */
+    flex-direction: column;   /* Stack the label on top of the button */
+    align-items: center;      /* Center the label and button horizontally */
+    justify-content: center;  /* Center the items vertically (optional) */
+    padding: 10px;            /* Add some padding around the container */
+    border: 2px solid black;  /* Border around the container (for visual purposes) */
+    width: 200px;             /* Set a fixed width for the container */
+    text-align: center;       /* Center the text inside the label and button */
+}
