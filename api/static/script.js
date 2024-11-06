@@ -16,9 +16,9 @@ function increment_upgrade() {
     update(); // Update the display and check button state
 }
 
-function increment_upgrade_10() {
-    number -= 1000;  // Decrease number by 1000 for the upgrade
-    increment_ammount += 10; // Increase the increment amount
+function increment_upgrade_100() {
+    number -= 10000;  // Decrease number by 1000 for the upgrade
+    increment_ammount += 100; // Increase the increment amount
     update(); // Update the display and check button state
 }
 
@@ -51,14 +51,12 @@ function update() {
         upgradeButton.disabled = false; // Enable if number is 100 or greater
     }
 
-    // Handle "Upgrade 10" button for 1000 increments
-    const upgradeButton10 = document.getElementById('increment_upgrade_10'); 
-    if (number < 1000) {
-        console.log("Disabling upgrade button (1000):", number); // Debugging: Track button disable state
-        upgradeButton10.disabled = true;  // Disable if number is less than 1000
+    // Handle "Upgrade 100" button for 10000 increments
+    const upgradeButton100 = document.getElementById('increment_upgrade_10'); 
+    if (number < 10000) {
+        upgradeButton100.disabled = true;  // Disable if number is less than 1000
     } else {
-        console.log("Enabling upgrade button (1000):", number); // Debugging: Track button enable state
-        upgradeButton10.disabled = false; // Enable if number is 1000 or greater
+        upgradeButton100.disabled = false; // Enable if number is 1000 or greater
     }
 }
 
