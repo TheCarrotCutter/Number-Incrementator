@@ -16,6 +16,13 @@ function increment_upgrade() {
     increment_ammount += 1
     update();
 }
+
+function increment_upgrade_x10() {
+    number -= 1000;
+    increment_ammount += 10
+    update();
+}
+
 // Function to update the display and save the new value to localStorage
 function update() {
     document.getElementById('counter').textContent = number;  // Update the counter on the page
@@ -33,6 +40,17 @@ function update() {
 
     // Disable/Enable the button based on the value of `number`
     if (number < 100) {
+        button.disabled = true;  // Disable if number is less than 100
+    } else {
+        button.disabled = false; // Enable if number is 100 or greater
+    }
+   
+    
+    // Get the button element
+    const button = document.getElementById('increment_upgrade_x10'); 
+
+    // Disable/Enable the button based on the value of `number`
+    if (number < 1000) {
         button.disabled = true;  // Disable if number is less than 100
     } else {
         button.disabled = false; // Enable if number is 100 or greater
