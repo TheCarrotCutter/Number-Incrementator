@@ -47,7 +47,7 @@ function update() {
    
     
     // Get the button element
-    const button = document.getElementById('increment_upgrade_x10'); 
+    const button = document.getElementById('increment_upgrade_10'); 
 
     // Disable/Enable the button based on the value of `number`
     if (number < 1000) {
