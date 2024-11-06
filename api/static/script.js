@@ -24,8 +24,7 @@ function increment_upgrade_100() {
 
 // Function to update the display and save the new value to localStorage
 function update() {
-    console.log("Updating... Current number: ", number); // Debugging: Check current number
-
+    
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = number;  
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
