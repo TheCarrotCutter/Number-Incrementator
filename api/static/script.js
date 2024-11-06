@@ -24,6 +24,8 @@ function increment_upgrade_1000() {
 
 // Function to update the display and save the new value to localStorage
 function update() {
+
+    const formattedNumber = number.toLocaleString();
     
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = number;  
