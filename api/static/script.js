@@ -3,7 +3,6 @@ let number = parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
 let total = parseInt(localStorage.getItem('total_save')) || 0; 
 
-
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by 1
@@ -13,47 +12,50 @@ function increment() {
 
 function increment_upgrade() {
     number -= 100;
-    increment_ammount += 1
+    increment_ammount += 1;
     update();
 }
 
 function increment_upgrade_10() {
     number -= 1000;
-    increment_ammount += 10
+    increment_ammount += 10;
     update();
 }
 
 // Function to update the display and save the new value to localStorage
 function update() {
+    console.log("Updating... Current number: ", number); // Debugging: Check current number
     document.getElementById('counter').textContent = number;  // Update the counter on the page
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + total;
-    localStorage.setItem('number_save', number);  // Save the updated number to localStorage
+    
+    // Save the updated values to localStorage
+    localStorage.setItem('number_save', number);  
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
 
     if (number < 0) {
-        number = 0
+        number = 0;
     }
-    // Get the button element
+
+    // Handle "Upgrade" button for 100 increments
     const upgradeButton = document.getElementById('increment_upgrade'); 
-
-    // Disable/Enable the button based on the value of `number`
     if (number < 100) {
-        button.disabled = true;  // Disable if number is less than 100
+        console.log("Disabling upgrade button (100):", number); // Debugging: Track button disable state
+        upgradeButton.disabled = true;  // Disable if number is less than 100
     } else {
-        button.disabled = false; // Enable if number is 100 or greater
+        console.log("Enabling upgrade button (100):", number); // Debugging: Track button enable state
+        upgradeButton.disabled = false; // Enable if number is 100 or greater
     }
-   
-    
-    // Get the button element
-    const upgradeButton10 = document.getElementById('increment_upgrade_10'); 
 
-    // Disable/Enable the button based on the value of `number`
+    // Handle "Upgrade 10" button for 1000 increments
+    const upgradeButton10 = document.getElementById('increment_upgrade_10'); 
     if (number < 1000) {
-        button.disabled = true;  // Disable if number is less than 100
+        console.log("Disabling upgrade button (1000):", number); // Debugging: Track button disable state
+        upgradeButton10.disabled = true;  // Disable if number is less than 1000
     } else {
-        button.disabled = false; // Enable if number is 100 or greater
+        console.log("Enabling upgrade button (1000):", number); // Debugging: Track button enable state
+        upgradeButton10.disabled = false; // Enable if number is 1000 or greater
     }
 }
 
