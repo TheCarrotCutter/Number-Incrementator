@@ -21,6 +21,6 @@
 
 button {
     font-size: 15px;
-    width: 100px;
+    width: auto;
     height: 28px;
 }
