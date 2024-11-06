@@ -18,7 +18,7 @@ function increment_upgrade() {
 
 function increment_upgrade_1000() {
     number -= 10000;  // Decrease number by 10000 for the upgrade
-    increment_ammount += 100; // Increase the increment amount by 100
+    increment_ammount += 1000; // Increase the increment amount by 100
     update(); // Update the display and check button state
 }
 
