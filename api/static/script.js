@@ -25,6 +25,8 @@ function increment_upgrade_1000() {
 // Function to update the display and save the new value to localStorage
 function update() {
 
+    console.log("Current number: ", number);
+
     const formattedNumber = number.toLocaleString();
     
     // Update the counter, increment button text, and total display
