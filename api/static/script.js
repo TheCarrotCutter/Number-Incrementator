@@ -47,10 +47,8 @@ function update() {
     // Handle "Upgrade" button for 100 increments
     const upgradeButton = document.getElementById('increment_upgrade'); 
     if (number < 100) {
-        console.log("Disabling upgrade button (100):", number); // Debugging: Track button disable state
         upgradeButton.disabled = true;  // Disable if number is less than 100
     } else {
-        console.log("Enabling upgrade button (100):", number); // Debugging: Track button enable state
         upgradeButton.disabled = false; // Enable if number is 100 or greater
     }
 
