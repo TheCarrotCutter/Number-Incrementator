@@ -18,3 +18,9 @@
     top: 3.75%;
     right: 1%;
 }
+
+button {
+    font-size: 15px;
+    width: 100px;
+    height: 28px;
+}
