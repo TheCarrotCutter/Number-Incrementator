@@ -5,27 +5,29 @@ let total = parseInt(localStorage.getItem('total_save')) || 0;
 
 // Function to increment the counter
 function increment() {
-    number += increment_ammount; // Increment the number by 1
+    number += increment_ammount; // Increment the number by increment_ammount
     total += increment_ammount;
     update();    // Update the display and check the button state
 }
 
 function increment_upgrade() {
-    number -= 100;
-    increment_ammount += 1;
-    update();
+    number -= 100;  // Decrease number by 100 for the upgrade
+    increment_ammount += 1; // Increase the increment amount
+    update(); // Update the display and check button state
 }
 
 function increment_upgrade_10() {
-    number -= 1000;
-    increment_ammount += 10;
-    update();
+    number -= 1000;  // Decrease number by 1000 for the upgrade
+    increment_ammount += 10; // Increase the increment amount
+    update(); // Update the display and check button state
 }
 
 // Function to update the display and save the new value to localStorage
 function update() {
     console.log("Updating... Current number: ", number); // Debugging: Check current number
-    document.getElementById('counter').textContent = number;  // Update the counter on the page
+
+    // Update the counter, increment button text, and total display
+    document.getElementById('counter').textContent = number;  
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + total;
     
@@ -34,6 +36,7 @@ function update() {
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
 
+    // Prevent the counter from going negative
     if (number < 0) {
         number = 0;
     }
