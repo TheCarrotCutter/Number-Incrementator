@@ -17,7 +17,7 @@ function increment_upgrade() {
     update();
 }
 
-function increment_upgrade_x10() {
+function increment_upgrade_10() {
     number -= 1000;
     increment_ammount += 10
     update();
