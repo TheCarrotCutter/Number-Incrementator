@@ -27,12 +27,14 @@ button {
 
 .upgrade_button_100 {
     position: fixed;
-    top: auto%;
-    right: auto%
+    top: 23%;
+    right: auto%;
+    padding: 15px;
 }
 
 .upgrade_button_1000 {
     position: fixed;
-    top: auto%;
+    top: 23%;
     right: auto%;
+    padding: 15px;
 }
