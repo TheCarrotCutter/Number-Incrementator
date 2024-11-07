@@ -88,7 +88,7 @@ function update() {
 
     // Handle "Upgrade Max" button (new) based on the rounded number
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
-    if (number < roundedNumber) {
+    if (number >= price) {
         upgradeButtonMax.disabled = true;  // Disable if not enough number for the upgrade
     } else {
         upgradeButtonMax.disabled = false; // Enable if enough number for max upgrade
