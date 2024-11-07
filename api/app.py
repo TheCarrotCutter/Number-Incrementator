@@ -62,6 +62,3 @@ def load_progress(username):
             'increment_amount': player.increment_amount,
         })
     return jsonify({"status": "error", "message": "Player not found"}), 404
-
-if __name__ == '__main__':
-    app.run(debug=True)
