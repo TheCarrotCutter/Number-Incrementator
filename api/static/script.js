@@ -1,9 +1,8 @@
 // Load the stored counter value from localStorage, default to 0 if not found
 let number = parseInt(localStorage.getItem('number_save')) || 0; 
-
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
-
 let total = parseInt(localStorage.getItem('total_save')) || 0;
+let price = parseInt(localStorage.getItem('price_save')) || 100;
 
 // Function to increment the counter
 function increment() {
@@ -13,14 +12,16 @@ function increment() {
 }
 
 function increment_upgrade() {
-    number -= 100;  // Decrease number by 100 for the upgrade
+    number -= price;  // Decrease number by 100 for the upgrade
     increment_ammount += 1; // Increase the increment amount
+    price += 1
     update(); // Update the display and check button state
 }
 
 function increment_upgrade_1000() {
-    number -= 100000;  // Decrease number by 10000 for the upgrade
+    number -= (price * 1000);  // Decrease number by 10000 for the upgrade
     increment_ammount += 1000; // Increase the increment amount by 1000
+    price += 1000
     update(); // Update the display and check button state
 }
 
@@ -48,6 +49,7 @@ function update() {
     localStorage.setItem('number_save', number);  
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
+    localStorage.setItem('price_save', price);
 
     // Prevent the counter from going negative
     if (number < 0) {
