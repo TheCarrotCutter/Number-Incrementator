@@ -2,7 +2,7 @@
 let number = 0; 
 let increment_ammount = 1; 
 let total = 0;
-let price = 100;
+let price = 99 + increment_ammount
 
 // Declare roundedNumber globally to avoid issues with scope
 let roundedNumber = Math.round(number / 100) * 100;
@@ -17,14 +17,12 @@ function increment() {
 function increment_upgrade() {
     number -= price;  // Decrease number by the current price for the upgrade
     increment_ammount += 1; // Increase the increment amount
-    price += 1;  // Increase the price for the next upgrade
     update(); // Update the display and check button state
 }
 
 function increment_upgrade_1000() {
     number -= (price * 1000);  // Decrease number by the price * 1000 for the upgrade
     increment_ammount += 1000; // Increase the increment amount by 1000
-    price += 1000;  // Increase the price for the next upgrade
     update(); // Update the display and check button state
 }
 
@@ -39,8 +37,6 @@ function increment_upgrade_max() {
         // Increase increment_ammount based on the roundedNumber
         increment_ammount += Math.round((roundedNumber / 100) / 20); // This increases increment_ammount based on 1/20 of the rounded number
 
-        // Increase price for the next upgrade
-        price += (roundedNumber / 100) / 20;
     }
 
     update(); // Update the display and check button state
@@ -50,6 +46,7 @@ function increment_upgrade_max() {
 function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
+    price = 99 + increment_ammount;
 
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;  
