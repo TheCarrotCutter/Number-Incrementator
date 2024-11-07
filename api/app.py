@@ -11,9 +11,7 @@ class Player(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     number = db.Column(db.Integer, default=0)
     total = db.Column(db.Float, default=0.0)
-    increment_upgrade = db.Column(db.Integer, default=0)
-    increment_upgrade_1000 = db.Column(db.Integer, default=0)
-    increment_upgrade_max = db.Column(db.Integer, default=0)
+    increment_amount = db.Column(db.Integer, default=1)  # Default increment amount (e.g., 1)
 
     def __repr__(self):
         return f'<Player {self.username}>'
@@ -31,18 +29,15 @@ def save_progress():
     username = player_data.get('username')
     number = player_data.get('number')
     total = player_data.get('total')
-    increment_ammount = player_data.get('increment_ammount')
-
+    increment_amount = player_data.get('increment_ammount')
 
     player = Player.query.filter_by(username=username).first()
     if player:
         player.number = number
         player.total = total
-        player.increment_ammount = increment_ammount
-
+        player.increment_ammount = increment_amount
     else:
-        player = Player(username=username, number=number, total=total,
-                        increment_ammount=increment_ammount, )
+        player = Player(username=username, number=number, total=total, increment_amount=increment_amount)
         db.session.add(player)
     
     db.session.commit()
