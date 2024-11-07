@@ -27,8 +27,7 @@ function increment_upgrade_max() {
     let roundedNumber = Math.round(number / 100) * 100;
 
     number -= (roundedNumber - 100);  // Decrease number by the rounded value for the upgrade
-        increment_ammount += Math.round((roundedNumber / 100) / 3); // Increase the increment amount by 1/3 of the roundedNumber divided by 100
-    }
+    increment_ammount += Math.round((roundedNumber / 100) / 3); // Increase the increment amount by 1/3 of the roundedNumber divided by 100
 
     update(); // Update the display and check button state
 }
