@@ -74,7 +74,7 @@ function update() {
     // Handle "Upgrade Max" button (new) based on the rounded number
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
     let roundedNumber = Math.round(number / 100) * 100;
-    if (number < roundedNumber || number <= 0) {
+    if number >= 100 {
         upgradeButtonMax.disabled = true;  // Disable if not enough number for the upgrade
     } else {
         upgradeButtonMax.disabled = false; // Enable if enough number for max upgrade
