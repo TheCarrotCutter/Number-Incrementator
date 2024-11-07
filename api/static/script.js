@@ -4,6 +4,9 @@ let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save'))
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 let price = parseInt(localStorage.getItem('price_save')) || 100;
 
+// Declare roundedNumber globally to avoid issues with scope
+let roundedNumber = Math.round(number / 100) * 100;
+
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by increment_ammount
@@ -12,29 +15,35 @@ function increment() {
 }
 
 function increment_upgrade() {
-    number -= price;  // Decrease number by 100 for the upgrade
+    number -= price;  // Decrease number by the current price for the upgrade
     increment_ammount += 1; // Increase the increment amount
-    price += 1
+    price += 1;  // Increase the price for the next upgrade
     update(); // Update the display and check button state
 }
 
 function increment_upgrade_1000() {
-    number -= (price * 1000);  // Decrease number by 10000 for the upgrade
+    number -= (price * 1000);  // Decrease number by the price * 1000 for the upgrade
     increment_ammount += 1000; // Increase the increment amount by 1000
-    price += 1000
+    price += 1000;  // Increase the price for the next upgrade
     update(); // Update the display and check button state
 }
 
 function increment_upgrade_max() {
-    // Calculate the roundedNumber before upgrading
-    let roundedNumber = Math.round(number / 100) * 100;
+    // Recalculate roundedNumber before upgrading
+    roundedNumber = Math.round(number / 100) * 100;
 
-    number -= ((roundedNumber / 100) * price)  - 50);  // Decrease number by the rounded value for the upgrade
-    increment_ammount += Math.round((roundedNumber / 100) / 20); // Increase the increment amount by 1/3 of the roundedNumber divided by 100
+    if (number >= roundedNumber) {
+        // Decrease the number by some function of roundedNumber and price
+        number -= ((roundedNumber / 100) * price) - 50;  // You may want to adjust this formula
+
+        // Increase increment_ammount based on the roundedNumber
+        increment_ammount += Math.round((roundedNumber / 100) / 20); // This increases increment_ammount based on 1/20 of the rounded number
+
+        // Increase price for the next upgrade
+        price += (roundedNumber / 100);
+    }
 
     update(); // Update the display and check button state
-
-    price += (roundedNumber / 100)
 }
 
 // Function to update the display and save the new value to localStorage
@@ -48,7 +57,7 @@ function update() {
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ')';
-    document.getElementById('increment_upgrade_max').textContent = 'Upgrade (' + (price * (roundedNumber * 100)) + ')';
+    document.getElementById('increment_upgrade_max').textContent = 'Upgrade (' + (price * (roundedNumber / 100)) + ')';
     
     // Save the updated values to localStorage
     localStorage.setItem('number_save', number);  
@@ -79,8 +88,7 @@ function update() {
 
     // Handle "Upgrade Max" button (new) based on the rounded number
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
-    let roundedNumber = Math.round(number / 100) * 100;
-    if (number <= 100) {
+    if (number < roundedNumber) {
         upgradeButtonMax.disabled = true;  // Disable if not enough number for the upgrade
     } else {
         upgradeButtonMax.disabled = false; // Enable if enough number for max upgrade
