@@ -40,7 +40,7 @@ function increment_upgrade_max() {
         increment_ammount += Math.round((roundedNumber / 100) / 20); // This increases increment_ammount based on 1/20 of the rounded number
 
         // Increase price for the next upgrade
-        price += (roundedNumber / 100);
+        price += (roundedNumber / 100) / 20;
     }
 
     update(); // Update the display and check button state
