@@ -28,11 +28,12 @@ function update() {
     console.log("Current number: ", number);
 
     const formattedNumber = number.toLocaleString();
+    const formattedTotal = total.toLocaleString();
     
     // Update the counter, increment button text, and total display
-    document.getElementById('counter').textContent = number;  
+    document.getElementById('counter').textContent = formattedNumber;  
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
-    document.getElementById('total').textContent = 'Total: ' + total;
+    document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     
     // Save the updated values to localStorage
     localStorage.setItem('number_save', number);  
