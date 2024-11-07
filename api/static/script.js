@@ -1,7 +1,7 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = parseInt(localStorage.getItem('number_save')) || 0;  // Default to 0 if not found
-let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;  // Default to 1 if not found
-let total = parseInt(localStorage.getItem('total_save')) || 0;  // Default to 0 if not found
+let number = 0;
+let increment_ammount = 1;
+let total = 0;
 
 let price = 99 + increment_ammount
 
@@ -36,7 +36,7 @@ function increment_upgrade_max() {
         number -= ((roundedNumber / 100) * price) - 50;  // You may want to adjust this formula
 
         // Increase increment_ammount based on the roundedNumber
-        increment_ammount += Math.round((roundedNumber / 100) / 20); // This increases increment_ammount based on 1/20 of the rounded number
+        increment_ammount += Math.round((roundedNumber / 100) / 5); // This increases increment_ammount based on 1/20 of the rounded number
 
     }
 
