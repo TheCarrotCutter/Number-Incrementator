@@ -26,9 +26,7 @@ function increment_upgrade_max() {
     // Calculate the roundedNumber before upgrading
     let roundedNumber = Math.round(number / 100) * 100;
 
-    // Ensure number is greater than or equal to the roundedNumber before upgrading
-    if (number >= roundedNumber) {
-        number -= roundedNumber;  // Decrease number by the rounded value for the upgrade
+    number -= (roundedNumber - 100);  // Decrease number by the rounded value for the upgrade
         increment_ammount += Math.round((roundedNumber / 100) / 3); // Increase the increment amount by 1/3 of the roundedNumber divided by 100
     }
 
