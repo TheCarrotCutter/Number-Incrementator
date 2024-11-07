@@ -29,10 +29,12 @@ function increment_upgrade_max() {
     // Calculate the roundedNumber before upgrading
     let roundedNumber = Math.round(number / 100) * 100;
 
-    number -= (roundedNumber - 50);  // Decrease number by the rounded value for the upgrade
+    number -= ((roundedNumber / 100) * price)  - 50);  // Decrease number by the rounded value for the upgrade
     increment_ammount += Math.round((roundedNumber / 100) / 20); // Increase the increment amount by 1/3 of the roundedNumber divided by 100
 
     update(); // Update the display and check button state
+
+    price += (roundedNumber / 100)
 }
 
 // Function to update the display and save the new value to localStorage
