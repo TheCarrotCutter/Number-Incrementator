@@ -8,6 +8,7 @@
 }
 
 .main_button {
+    display: block;
     width: auto;
     height: 35px;
     font-size: 120%;
