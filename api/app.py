@@ -31,22 +31,18 @@ def save_progress():
     username = player_data.get('username')
     number = player_data.get('number')
     total = player_data.get('total')
-    increment_upgrade = player_data.get('increment_upgrade')
-    increment_upgrade_1000 = player_data.get('increment_upgrade_1000')
-    increment_upgrade_max = player_data.get('increment_upgrade_max')
+    increment_ammount = player_data.get('increment_ammount')
+
 
     player = Player.query.filter_by(username=username).first()
     if player:
         player.number = number
         player.total = total
-        player.increment_upgrade = increment_upgrade
-        player.increment_upgrade_1000 = increment_upgrade_1000
-        player.increment_upgrade_max = increment_upgrade_max
+        player.increment_ammount = increment_ammount
+
     else:
         player = Player(username=username, number=number, total=total,
-                        increment_upgrade=increment_upgrade, 
-                        increment_upgrade_1000=increment_upgrade_1000,
-                        increment_upgrade_max=increment_upgrade_max)
+                        increment_ammount=increment_ammount, )
         db.session.add(player)
     
     db.session.commit()
@@ -60,9 +56,7 @@ def load_progress(username):
             'username': player.username,
             'number': player.number,
             'total': player.total,
-            'increment_upgrade': player.increment_upgrade,
-            'increment_upgrade_1000': player.increment_upgrade_1000,
-            'increment_upgrade_max': player.increment_upgrade_max,
+            'increment_ammount': player.increment_ammount,
         })
     return jsonify({"status": "error", "message": "Player not found"}), 404
 
