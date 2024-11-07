@@ -25,7 +25,7 @@ function increment_upgrade_1000() {
 
 function increment_upgrade_max() {
     number -= roundedNumber;  // Decrease number by 10000 for the upgrade
-    increment_ammount += (roundedNumber / 100) / 3; // Increase the increment amount by 100
+    increment_ammount += math.round((roundedNumber / 100) / 3); // Increase the increment amount by 100
     update(); // Update the display and check button state
 }
 
