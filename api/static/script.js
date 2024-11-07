@@ -1,7 +1,9 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = 0;
-let increment_ammount = 1;
-let total = 0;
+let number = parseInt(localStorage.getItem('number_save')) || 0; 
+
+let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
+
+let total = parseInt(localStorage.getItem('total_save')) || 0;
 
 // Function to increment the counter
 function increment() {
