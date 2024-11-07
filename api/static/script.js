@@ -1,8 +1,8 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = parseInt(localStorage.getItem('number_save')) || 0; 
-let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
-let total = parseInt(localStorage.getItem('total_save')) || 0;
-let price = parseInt(localStorage.getItem('price_save')) || 100;
+let number = 0; 
+let increment_ammount = 1; 
+let total = 0;
+let price = 100;
 
 // Declare roundedNumber globally to avoid issues with scope
 let roundedNumber = Math.round(number / 100) * 100;
