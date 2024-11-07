@@ -33,7 +33,7 @@ function increment_upgrade_max() {
 function update() {
 
     
-    roundedNumber = Math.round(number / 100) * 100;
+    roundedNumber = Math.round(number / 100) * 100 - 100;
 
     console.log("Current number: ", number);
 
