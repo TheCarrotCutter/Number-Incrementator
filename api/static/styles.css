@@ -24,17 +24,3 @@ button {
     width: auto;
     height: 28px;
 }
-
-.upgrade_button_100 {
-    position: fixed;
-    top: 23%;
-    right: 80%;
-    padding: 15px;
-}
-
-.upgrade_button_1000 {
-    position: fixed;
-    top: 23%;
-    right: 80%;
-    padding: 15px;
-}
