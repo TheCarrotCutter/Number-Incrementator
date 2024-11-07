@@ -2,6 +2,7 @@
 let number = parseInt(localStorage.getItem('number_save')) || 0; 
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1; 
 let total = parseInt(localStorage.getItem('total_save')) || 0; 
+let roundedNumber = Math.round(number / 100) * 100;
 
 // Function to increment the counter
 function increment() {
@@ -18,12 +19,21 @@ function increment_upgrade() {
 
 function increment_upgrade_1000() {
     number -= 100000;  // Decrease number by 10000 for the upgrade
-    increment_ammount += 1000; // Increase the increment amount by 100
+    increment_ammount += 1000; // Increase the increment amount by 1000
+    update(); // Update the display and check button state
+}
+
+function increment_upgrade_max() {
+    number -= roundedNumber;  // Decrease number by 10000 for the upgrade
+    increment_ammount += (roundedNumber / 100); // Increase the increment amount by 100
     update(); // Update the display and check button state
 }
 
 // Function to update the display and save the new value to localStorage
 function update() {
+
+    
+    roundedNumber = Math.round(number / 100) * 100;
 
     console.log("Current number: ", number);
 
