@@ -72,7 +72,7 @@ function update() {
 
     // Handle "Upgrade" button for 100 increments
     const upgradeButton = document.getElementById('increment_upgrade'); 
-    if (number < 100) {
+    if (number < price) {
         upgradeButton.disabled = true;  // Disable if number is less than 100
     } else {
         upgradeButton.disabled = false; // Enable if number is 100 or greater
@@ -80,7 +80,7 @@ function update() {
 
     // Handle "Upgrade 1000" button for 10000 increments
     const upgradeButton1000 = document.getElementById('increment_upgrade_1000'); 
-    if (number < 100000) {
+    if (number < price * 1000) {
         upgradeButton1000.disabled = true;  // Disable if number is less than 10000
     } else {
         upgradeButton1000.disabled = false; // Enable if number is 10000 or greater
@@ -88,7 +88,7 @@ function update() {
 
     // Handle "Upgrade Max" button (new) based on the rounded number
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
-    if (number >= price) {
+    if (number < price) {
         upgradeButtonMax.disabled = true;  // Disable if not enough number for the upgrade
     } else {
         upgradeButtonMax.disabled = false; // Enable if enough number for max upgrade
