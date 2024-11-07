@@ -26,6 +26,7 @@ button {
 }
 
 .main_upgrade_buttons {
+    position: fixed;
     top: 10%;
     right: auto;
 }
