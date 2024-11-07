@@ -24,3 +24,8 @@ button {
     width: auto;
     height: 28px;
 }
+
+.main_upgrade_buttons {
+    top: 10%;
+    right: auto;
+}
