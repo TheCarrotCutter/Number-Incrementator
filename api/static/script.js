@@ -46,6 +46,9 @@ function update() {
     document.getElementById('counter').textContent = formattedNumber;  
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
+    document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ')';
+    document.getElementById('increment_upgrade_max').textContent = 'Upgrade (' + (price * (roundedNumber * 100)) + ')';
     
     // Save the updated values to localStorage
     localStorage.setItem('number_save', number);  
