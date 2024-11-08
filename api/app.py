@@ -5,33 +5,31 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
-app.logger.setLevel(logging.DEBUG)
-
-# Explicitly load the .env file from the root directory
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+# Load environment variables from .env
+load_dotenv()
 
 # Set up logging
 logging.basicConfig(
     level=logging.DEBUG,  # Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     format='%(asctime)s - %(levelname)s - %(message)s',  # Log format
     handlers=[
-        logging.StreamHandler(),  # This logs to the console
-        logging.FileHandler('app.log', mode='a')  # This logs to a file
+        logging.StreamHandler(),  # Logs to console
+        logging.FileHandler('app.log', mode='a')  # Logs to a file
     ]
 )
 
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-# Database URL (check if it’s loaded correctly)
-db_url = os.getenv('DATABASE_PUBLIC_URL')
+# Database URL (from environment variable)
+db_url = os.getenv('DATABASE_URL')
 if db_url:
-    app.logger.info(f"Database URL loaded successfully: {db_url}")
+    app.logger.info(f"Database URL loaded successfully")
 else:
-    app.logger.error("DATABASE_PUBLIC_URL not found")
+    app.logger.error("DATABASE_URL not found")
 
 # Database setup
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://postgres:mPfgQOkwCRqCQYLlUaLnYfFxWegIrWXJ@autorack.proxy.rlwy.net:5432/railway?sslmode=require"
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url + '?sslmode=require' if db_url else ''
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
@@ -102,6 +100,7 @@ def load_progress(username):
         app.logger.error(f"Error loading progress: {str(e)}")
         return jsonify({"status": "error", "message": "Failed to load progress"}), 500
 
+# Test database connection
 @app.before_first_request
 def test_db_connection():
     try:
