@@ -4,27 +4,21 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
-# Initialize Flask-Migrate
-migrate = Migrate(app, db)
-
-
 # Load environment variables from the .env file in the root
 load_dotenv()
-
-# Get the database URL from the environment variable
-DATABASE_URL = os.getenv('DATABASE_URL')
-
 
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-
-# Configure PostgreSQL URI, pulling DATABASE_PUBLIC_URL from environment variable
+# Get the database URL from the environment variable
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_PUBLIC_URL') + '?sslmode=require'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
 
 # Define Player model
 class Player(db.Model):
@@ -39,8 +33,8 @@ class Player(db.Model):
 
 # Avoid auto-creating tables in production, only create when needed
 # Uncomment this only for development; in production, handle migrations manually
- with app.app_context():
-     db.create_all()  
+# with app.app_context():
+#     db.create_all()  # Creates tables based on the model if necessary
 
 # Route to serve the game page
 @app.route('/')
@@ -91,3 +85,6 @@ def test_db_connection():
         app.logger.info("Successfully connected to the database!")
     except Exception as e:
         app.logger.error(f"Database connection error: {e}")
+
+if __name__ == "__main__":
+    app.run(debug=True)
