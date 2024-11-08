@@ -15,7 +15,8 @@ print("Database URL:", os.getenv('DATABASE_PUBLIC_URL'))
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
 # Get the database URL from the environment variable
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_PUBLIC_URL') + '?sslmode=require'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_PUBLIC_URL')
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
