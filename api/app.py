@@ -1,20 +1,16 @@
 import os
-import logging
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Configure PostgreSQL URI, pulling DATABASE_URL from environment variable
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///game_data.db')  # Use SQLite locally
+# Configure PostgreSQL URI, pulling DATABASE_PUBLIC_URL from environment variable
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_PUBLIC_URL') + '?sslmode=require'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
-
-# Configure logging
-logging.basicConfig(level=logging.DEBUG)
 
 # Define Player model
 class Player(db.Model):
@@ -27,13 +23,10 @@ class Player(db.Model):
     def __repr__(self):
         return f'<Player {self.username}>'
 
-# Create tables if they don't exist (for development only, not recommended for production)
-with app.app_context():
-    try:
-        db.create_all()  # This ensures tables are created for new apps
-    except Exception as e:
-        app.logger.error(f"Error creating tables: {e}")
-        raise e
+# Avoid auto-creating tables in production, only create when needed
+# Uncomment this only for development; in production, handle migrations manually
+# with app.app_context():
+#     db.create_all()  
 
 # Route to serve the game page
 @app.route('/')
@@ -43,43 +36,44 @@ def index():
 # Route to save player progress
 @app.route('/save_progress', methods=['POST'])
 def save_progress():
-    try:
-        player_data = request.json
-        username = player_data.get('username')
-        number = player_data.get('number')
-        total = player_data.get('total')
-        increment_amount = player_data.get('increment_amount')
+    player_data = request.json
+    username = player_data.get('username')
+    number = player_data.get('number')
+    total = player_data.get('total')
+    increment_amount = player_data.get('increment_amount')
 
-        player = Player.query.filter_by(username=username).first()
-        if player:
-            # Update existing player data
-            player.number = number
-            player.total = total
-            player.increment_amount = increment_amount
-        else:
-            # Create a new player if not found
-            player = Player(username=username, number=number, total=total, increment_amount=increment_amount)
-            db.session.add(player)
+    player = Player.query.filter_by(username=username).first()
+    if player:
+        # Update existing player data
+        player.number = number
+        player.total = total
+        player.increment_amount = increment_amount
+    else:
+        # Create a new player if not found
+        player = Player(username=username, number=number, total=total, increment_amount=increment_amount)
+        db.session.add(player)
 
-        db.session.commit()
-        return jsonify({"status": "success", "message": "Progress saved"}), 200
-    except Exception as e:
-        app.logger.error(f"Error saving player progress: {e}")
-        return jsonify({"status": "error", "message": f"Error saving progress: {e}"}), 500
+    db.session.commit()
+    return jsonify({"status": "success", "message": "Progress saved"}), 200
 
 # Route to load player progress
 @app.route('/load_progress/<username>', methods=['GET'])
 def load_progress(username):
+    player = Player.query.filter_by(username=username).first()
+    if player:
+        return jsonify({
+            'username': player.username,
+            'number': player.number,
+            'total': player.total,
+            'increment_amount': player.increment_amount,
+        })
+    return jsonify({"status": "error", "message": "Player not found"}), 404
+
+@app.before_first_request
+def test_db_connection():
     try:
-        player = Player.query.filter_by(username=username).first()
-        if player:
-            return jsonify({
-                'username': player.username,
-                'number': player.number,
-                'total': player.total,
-                'increment_amount': player.increment_amount,
-            })
-        return jsonify({"status": "error", "message": "Player not found"}), 404
+        # Test the database connection
+        db.engine.connect()
+        app.logger.info("Successfully connected to the database!")
     except Exception as e:
-        app.logger.error(f"Error loading player progress: {e}")
-        return jsonify({"status": "error", "message": f"Error loading progress: {e}"}), 500
+        app.logger.error(f"Database connection error: {e}")
