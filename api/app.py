@@ -5,9 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
-# Load environment variables from the .env file
+# Explicitly load the .env file from the root directory
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
-
 
 # Set up logging
 logging.basicConfig(
@@ -22,8 +21,15 @@ logging.basicConfig(
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
-# Database URL
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_PUBLIC_URL') + '?sslmode=require'
+# Database URL (check if it’s loaded correctly)
+db_url = os.getenv('DATABASE_PUBLIC_URL')
+if db_url:
+    app.logger.info(f"Database URL loaded successfully: {db_url}")
+else:
+    app.logger.error("DATABASE_PUBLIC_URL not found")
+
+# Database setup
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url + '?sslmode=require' if db_url else None
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
@@ -102,4 +108,5 @@ def test_db_connection():
     except Exception as e:
         app.logger.error(f"Database connection error: {e}")
 
-print("Database URL:", os.getenv('DATABASE_PUBLIC_URL'))
+if __name__ == "__main__":
+    app.run(debug=True)
