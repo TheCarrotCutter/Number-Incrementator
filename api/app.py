@@ -11,7 +11,8 @@ DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 # Initialize Flask app
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
+
 
 # Configure PostgreSQL URI, pulling DATABASE_PUBLIC_URL from environment variable
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_PUBLIC_URL') + '?sslmode=require'
