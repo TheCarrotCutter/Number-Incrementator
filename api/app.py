@@ -29,7 +29,7 @@ else:
     app.logger.error("DATABASE_PUBLIC_URL not found")
 
 # Database setup
-app.config['SQLALCHEMY_DATABASE_URI'] = db_url + '?sslmode=require' if db_url else None
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://postgres:mPfgQOkwCRqCQYLlUaLnYfFxWegIrWXJ@autorack.proxy.rlwy.net:5432/railway?sslmode=require"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
