@@ -2,6 +2,11 @@ import os
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
+from flask_migrate import Migrate
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
+
 
 # Load environment variables from the .env file in the root
 load_dotenv()
@@ -34,8 +39,8 @@ class Player(db.Model):
 
 # Avoid auto-creating tables in production, only create when needed
 # Uncomment this only for development; in production, handle migrations manually
-# with app.app_context():
-#     db.create_all()  
+ with app.app_context():
+     db.create_all()  
 
 # Route to serve the game page
 @app.route('/')
