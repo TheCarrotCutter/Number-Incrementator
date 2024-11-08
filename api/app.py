@@ -83,6 +83,3 @@ def load_progress(username):
     except Exception as e:
         app.logger.error(f"Error loading player progress: {e}")
         return jsonify({"status": "error", "message": f"Error loading progress: {e}"}), 500
-
-if __name__ == '__main__':
-    app.run(debug=True)  # For local development (remove `debug=True` in production)
