@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_migrate import Migrate
 
+app.logger.setLevel(logging.DEBUG)
+
 # Explicitly load the .env file from the root directory
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
 
