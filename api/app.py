@@ -7,6 +7,10 @@ from flask_migrate import Migrate
 # Load environment variables from the .env file in the root
 load_dotenv()
 
+# After loading the .env file, print the value to check if it loads correctly
+print("Database URL:", os.getenv('DATABASE_PUBLIC_URL'))
+
+
 # Initialize Flask app
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
