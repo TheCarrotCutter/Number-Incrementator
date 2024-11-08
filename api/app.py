@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Configure PostgreSQL URI, pulling DATABASE_URL from environment variable
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///game_data.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///game_data.db')  # Use SQLite locally
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy
@@ -23,14 +23,16 @@ class Player(db.Model):
     def __repr__(self):
         return f'<Player {self.username}>'
 
-# Create tables if they don't exist
+# Create tables if they don't exist (for development only, not recommended for production)
 with app.app_context():
-    db.create_all()
+    db.create_all()  # This ensures tables are created for new apps
 
+# Route to serve the game page
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# Route to save player progress
 @app.route('/save_progress', methods=['POST'])
 def save_progress():
     player_data = request.json
@@ -41,16 +43,19 @@ def save_progress():
 
     player = Player.query.filter_by(username=username).first()
     if player:
+        # Update existing player data
         player.number = number
         player.total = total
         player.increment_amount = increment_amount
     else:
+        # Create a new player if not found
         player = Player(username=username, number=number, total=total, increment_amount=increment_amount)
         db.session.add(player)
 
     db.session.commit()
     return jsonify({"status": "success", "message": "Progress saved"}), 200
 
+# Route to load player progress
 @app.route('/load_progress/<username>', methods=['GET'])
 def load_progress(username):
     player = Player.query.filter_by(username=username).first()
@@ -62,3 +67,6 @@ def load_progress(username):
             'increment_amount': player.increment_amount,
         })
     return jsonify({"status": "error", "message": "Player not found"}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True)  # For local development (remove `debug=True` in production)
