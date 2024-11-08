@@ -1,6 +1,14 @@
 import os
 from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+
+# Load environment variables from the .env file in the root
+load_dotenv()
+
+# Get the database URL from the environment variable
+DATABASE_URL = os.getenv('DATABASE_URL')
+
 
 # Initialize Flask app
 app = Flask(__name__)
