@@ -107,6 +107,3 @@ def test_db_connection():
         app.logger.info("Successfully connected to the database!")
     except Exception as e:
         app.logger.error(f"Database connection error: {e}")
-
-if __name__ == "__main__":
-    app.run(debug=True)
