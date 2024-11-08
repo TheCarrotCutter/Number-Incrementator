@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 from flask_migrate import Migrate
 
 # Load environment variables from the .env file
-load_dotenv()
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '..', '.env'))
+
 
 # Set up logging
 logging.basicConfig(
@@ -100,3 +101,5 @@ def test_db_connection():
         app.logger.info("Successfully connected to the database!")
     except Exception as e:
         app.logger.error(f"Database connection error: {e}")
+
+print("Database URL:", os.getenv('DATABASE_PUBLIC_URL'))
