@@ -2,8 +2,30 @@
 let number = 0;
 let increment_ammount = 1;
 let total = 0;
+    
 
 let price = 99 + increment_ammount
+
+let P1_start = Price;   // Starting price for Button 1
+let P1_increase = 1;   // Price increase for Button 1
+let P2_start = Price * 1000; // Starting price for Button 2
+let P2_increase = 1000; // Price increase for Button 2
+
+// Number of purchases for each button
+let purchases_1 = 1000; // Number of times Button 1 is bought
+let purchases_2 = 1;    // Button 2 is bought once
+
+// Calculate total cost for Button 1
+let totalCostButton1 = (purchases_1 / 2) * (P1_start + (P1_start + (purchases_1 - 1) * P1_increase));
+
+// Calculate total cost for Button 2 (only once)
+let totalCostButton2 = P2_start;
+
+// Calculate percentage difference in value
+let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
+
+
+
 
 // Declare roundedNumber globally to avoid issues with scope
 let roundedNumber = Math.round(number / 100) * 100;
@@ -62,6 +84,29 @@ function update() {
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
     localStorage.setItem('price_save', price);
+    
+    
+    // Define button parameters
+    P1_start = Price;   // Starting price for Button 1
+    P1_increase = 1;   // Price increase for Button 1
+    P2_start = Price * 1000; // Starting price for Button 2
+    P2_increase = 1000; // Price increase for Button 2
+
+    // Number of purchases for each button
+    purchases_1 = 1000; // Number of times Button 1 is bought
+    purchases_2 = 1;    // Button 2 is bought once
+
+    // Calculate total cost for Button 1
+    totalCostButton1 = (purchases_1 / 2) * (P1_start + (P1_start + (purchases_1 - 1) * P1_increase));
+
+    // Calculate total cost for Button 2 (only once)
+    totalCostButton2 = P2_start;
+
+    // Calculate percentage difference in value
+    percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
+
+    console.log(`Button 2 gives ${percentMoreValue.toFixed(2)}% more value.`);
+
 
     // Prevent the counter from going negative
     if (number < 0) {
