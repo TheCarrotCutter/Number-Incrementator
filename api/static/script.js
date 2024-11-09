@@ -15,16 +15,20 @@ let P2_increase = 1000; // Price increase for Button 2
 let purchases_1 = 1000; // Number of times Button 1 is bought
 let purchases_2 = 1;    // Button 2 is bought once
 
-// Calculate total cost for Button 1
-let totalCostButton1 = (purchases_1 / 2) * (P1_start + (P1_start + (purchases_1 - 1) * P1_increase));
+// Function to calculate total cost for Button 1
+function calculateTotalCostButton1() {
+    return (purchases_1 / 2) * (P1_start + (P1_start + (purchases_1 - 1) * P1_increase));
+}
 
-// Calculate total cost for Button 2 (only once)
-let totalCostButton2 = P2_start;
+// Function to calculate total cost for Button 2
+function calculateTotalCostButton2() {
+    return P2_start;
+}
 
-// Function to calculate percentage difference in value
+// Function to calculate the percentage difference in value
 function calculatePercentMoreValue() {
-    totalCostButton1 = (purchases_1 / 2) * (P1_start + (P1_start + (purchases_1 - 1) * P1_increase));
-    totalCostButton2 = P2_start;
+    const totalCostButton1 = calculateTotalCostButton1();
+    const totalCostButton2 = calculateTotalCostButton2();
     return ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
 }
 
@@ -79,7 +83,10 @@ function update() {
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + Math.round(calculatePercentMoreValue()) + '% More Value!)';
+    
+    // Update the 'Upgrade 1000' button with the percentage value
+    const percentMoreValue = calculatePercentMoreValue(); // Calculate fresh percentage
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + Math.round(percentMoreValue) + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades (95% Less Value)';
 
     // Save the updated values to localStorage
