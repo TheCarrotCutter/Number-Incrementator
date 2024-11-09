@@ -76,7 +76,7 @@ function update() {
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ')';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades (95% Less Value)';
     
     // Save the updated values to localStorage
