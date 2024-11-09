@@ -6,10 +6,10 @@ let total = 0;
 
 let price = 99 + increment_ammount
 
-let P1_start = Price;   // Starting price for Button 1
-let P1_increase = 1;   // Price increase for Button 1
-let P2_start = Price * 1000; // Starting price for Button 2
-let P2_increase = 1000; // Price increase for Button 2
+let P1_start = price;   // Starting price for Button 1
+let P1_increase = 1;   // price increase for Button 1
+let P2_start = price * 1000; // Starting price for Button 2
+let P2_increase = 1000; // price increase for Button 2
 
 // Number of purchases for each button
 let purchases_1 = 1000; // Number of times Button 1 is bought
@@ -87,10 +87,10 @@ function update() {
     
     
     // Define button parameters
-    P1_start = Price;   // Starting price for Button 1
-    P1_increase = 1;   // Price increase for Button 1
-    P2_start = Price * 1000; // Starting price for Button 2
-    P2_increase = 1000; // Price increase for Button 2
+    P1_start = price;   // Starting price for Button 1
+    P1_increase = 1;   // price increase for Button 1
+    P2_start = price * 1000; // Starting price for Button 2
+    P2_increase = 1000; // price increase for Button 2
 
     // Number of purchases for each button
     purchases_1 = 1000; // Number of times Button 1 is bought
