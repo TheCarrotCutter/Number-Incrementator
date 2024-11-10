@@ -54,15 +54,27 @@ function increment_upgrade_1000() {
 
 // Max upgrade function
 function increment_upgrade_max() {
-    // Recalculate roundedNumber before upgrading
-    let roundedNumber = Math.round(number / 100) * 100;
-    number -= ((roundedNumber / 100) * price) - 50;  // You may want to adjust this formula
+    // Calculate how many upgrades can be bought
+    let upgradesBought = Math.floor(number / price);
 
-     // Increase increment_ammount based on the roundedNumber
-    increment_ammount += Math.round(roundedNumber / 100); // This increases increment_ammount based on 1/20 of the rounded number
+    // If at least one upgrade can be bought
+    if (upgradesBought > 0) {
+        let totalCost = upgradesBought * price; // Total cost for all upgrades
 
-    update(); // Update the display and check button state
+        // Subtract the total cost of all upgrades
+        number -= totalCost;
+
+        // Increase increment_ammount based on the number of upgrades bought
+        increment_ammount += upgradesBought;
+
+        // Update the price for the next upgrade (after the purchase)
+        price = 99 + increment_ammount;
+
+        // Update the display and localStorage
+        update();
+    }
 }
+
 
 // Function to update the display and save the new value to localStorage
 function update() {
