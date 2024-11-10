@@ -56,14 +56,10 @@ function increment_upgrade_1000() {
 function increment_upgrade_max() {
     // Recalculate roundedNumber before upgrading
     let roundedNumber = Math.round(number / 100) * 100;
+    number -= ((roundedNumber / 100) * price) - 50;  // You may want to adjust this formula
 
-    if (number >= roundedNumber) {
-        // Decrease the number by some function of roundedNumber and price
-        number -= ((roundedNumber / 100) * price) - 50;  // You may want to adjust this formula
-
-        // Increase increment_ammount based on the roundedNumber
-        increment_ammount += Math.round((roundedNumber / 100) / 5); // This increases increment_ammount based on 1/20 of the rounded number
-    }
+     // Increase increment_ammount based on the roundedNumber
+    increment_ammount += Math.round(roundedNumber / 100); // This increases increment_ammount based on 1/20 of the rounded number
 
     update(); // Update the display and check button state
 }
