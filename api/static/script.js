@@ -20,7 +20,7 @@ function calculateTotalCostButton1(purchases) {
     return (purchases / 2) * (P1_start + (P1_start + (purchases - 1) * P1_increase));
 }
 
-// Function to calculate the percentage of more value for Button 2
+// Function to calculate the percentage of more value for Button 2 (x1000)
 function calculatePercentMoreValue() {
     let totalCostButton1 = calculateTotalCostButton1(purchases_1);
     let totalCostButton2 = P2_start;
@@ -75,19 +75,21 @@ function increment_upgrade_max() {
     }
 }
 
-
 // Function to update the display and save the new value to localStorage
 function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount;
 
+    // Calculate the percentage for the x1000 upgrade button
+    const percentMoreValue = calculatePercentMoreValue();
+
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + calculatePercentMoreValue().toFixed(2) + '% More Value!)';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
     // Save the updated values to localStorage
