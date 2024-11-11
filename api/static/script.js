@@ -60,8 +60,8 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
 
-    // Calculate the total cost for Button 1 after buying it 1000 times with increasing prices
-    let totalCostButton1 = (1000 * (2 * price + 999)) / 2; // Sum of the arithmetic series
+    // Calculate the total cost for Button 1 after buying it 1000 times
+    let totalCostButton1 = (1000 * (2 * price + 999)) / 2;  // Sum of the arithmetic series
 
     // Calculate the total cost of Button 2 (1000 times at price * 1000)
     let totalCostButton2 = price * 1000;
@@ -70,6 +70,7 @@ function update() {
     let percentMoreValue = ((totalCostButton2 - totalCostButton1) / totalCostButton1) * 100;
 
     // Debugging: log percentMoreValue to check if it's calculating correctly
+    console.log("totalCostButton1:", totalCostButton1);
     console.log("percentMoreValue: ", percentMoreValue);
 
     // Update the counter, increment button text, and total display
