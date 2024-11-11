@@ -54,6 +54,17 @@ function increment_upgrade_max() {
     }
 }
 
+function buy(item) {
+
+    if item = max_upgrade {
+        // show max upgrades
+    }
+
+    if item = percentages {
+        // show percentages
+    }
+}
+
 // Function to update the display and save the new value to localStorage
 function update() {
     const formattedNumber = number.toLocaleString();
