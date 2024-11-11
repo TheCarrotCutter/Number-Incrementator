@@ -24,7 +24,7 @@ function calculateTotalCostButton1(purchases) {
 function calculatePercentMoreValue() {
     let totalCostButton1 = calculateTotalCostButton1(purchases_1);
     let totalCostButton2 = P2_start;
-    return ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
+    let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
 }
 
 // Function to increment the counter
@@ -81,15 +81,12 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount;
 
-    // Calculate the percentage for the x1000 upgrade button
-    const percentMoreValue = calculatePercentMoreValue();
-
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
     // Save the updated values to localStorage
@@ -100,7 +97,23 @@ function update() {
 
     // Handle button states
     handleButtonStates();
-}
+
+    let P1_start = price;  // Starting price for Button 1
+    let P1_increase = 1;   // Price increase for Button 1
+    let P2_start = price * 1000; // Starting price for Button 2
+    let P2_increase = 1000; // Price increase for Button 2
+
+    // Number of purchases for each button
+    let purchases_1 = 1000; // Number of times Button 1 is bought
+    let purchases_2 = 1;    // Button 2 is bought once
+
+    // Function to calculate the total cost for Button 1 (x1 button)
+    
+    let totalCostButton1 = (purchases / 2) * (P1_start + (P1_start + (purchases - 1) * P1_increase));
+
+    // Function to calculate the percentage of more value for Button 2 (x1000)
+
+    let percentMoreValue = ((totalCostButton1 - P2_start) / totalCostButton2) * 100;
 
 // Handle button states
 function handleButtonStates() {
