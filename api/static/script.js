@@ -60,8 +60,8 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
 
-    // Calculate total cost for Button 1 after buying it 1000 times
-    let totalCostButton1 = 1000 * price;
+    // Calculate the total cost for Button 1 after buying it 1000 times with increasing prices
+    let totalCostButton1 = 1000 * (2 * price + 999) / 2;
 
     // Calculate the total cost of Button 2
     let totalCostButton2 = price * 1000;
