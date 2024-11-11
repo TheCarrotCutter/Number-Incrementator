@@ -6,28 +6,6 @@ let total = parseInt(localStorage.getItem('total_save')) || 0;
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
 
-// Number of purchases for each button
-let purchases_1 = 1000; // Number of times Button 1 is bought
-let purchases_2 = 1;    // Button 2 is bought once
-
-// Starting price for Button 1 and Button 2
-let P1_start = price;
-let P1_increase = 1;
-let P2_start = price * 1000;
-let P2_increase = 1000;
-
-// Function to calculate the total cost for Button 1 (x1 button)
-function calculateTotalCostButton1(purchases) {
-    return (purchases / 2) * (P1_start + (P1_start + (purchases - 1) * P1_increase));
-}
-
-// Function to calculate the percentage of more value for Button 2 (x1000)
-function calculatePercentMoreValue() {
-    let totalCostButton1 = calculateTotalCostButton1(purchases_1);
-    let totalCostButton2 = P2_start;
-    return ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
-}
-
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by increment_ammount
@@ -101,6 +79,10 @@ function update() {
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
+
+    // Calculate percentage difference in value
+    let percentMoreValue = ((price - (price * 1000)) / (price * 1000) * 100;
+
 }
 
 // Handle button states
