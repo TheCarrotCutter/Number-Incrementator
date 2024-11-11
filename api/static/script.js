@@ -74,9 +74,6 @@ function update() {
     localStorage.setItem('total_save', total);
     localStorage.setItem('price_save', price);
 
-    // Handle button states (enable/disable based on number)
-    handleButtonStates();
-
     // Calculate the total cost of Button 1 after buying it 1000 times
     let totalCostButton1 = 1000 * price;
 
