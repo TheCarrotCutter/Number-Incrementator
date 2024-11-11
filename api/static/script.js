@@ -79,6 +79,15 @@ function update() {
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
+
+    // Calculate the total cost of Button 1 after buying it 1000 times
+    let totalCostButton1 = 1000 * price;
+
+    // Calculate the cost of Button 2
+    let totalCostButton2 = price * 1000;
+
+    // Calculate the percentage difference (More value of Button 2)
+    let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
 }
 
 // Handle button states
