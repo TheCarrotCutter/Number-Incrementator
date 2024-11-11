@@ -55,17 +55,17 @@ function increment_upgrade_max() {
 }
 
 function buy(item) {
-
-    if item = max_upgrade {
+    if (item === "max_upgrade") {
         // show max upgrades
-        console.log("max upgrades")
+        console.log("Max upgrades");
     }
 
-    if item = percentages {
+    if (item === "percentages") {
         // show percentages
-        console.log("percentages")
+        console.log("Percentages");
     }
 }
+
 
 // Function to update the display and save the new value to localStorage
 function update() {
