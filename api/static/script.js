@@ -60,9 +60,6 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
 
-    // Calculate the percentage of more value for Button 2 (x1000)
-    let percentMoreValue = calculatePercentMoreValue();
-
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
