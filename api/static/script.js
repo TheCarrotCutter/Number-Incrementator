@@ -58,10 +58,12 @@ function buy(item) {
 
     if item = max_upgrade {
         // show max upgrades
+        console.log("max upgrades")
     }
 
     if item = percentages {
         // show percentages
+        console.log("percentages")
     }
 }
 
