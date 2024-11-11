@@ -60,9 +60,6 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
 
-    // Calculate percentage difference in value
-    let percentMoreValue = ((price - (price * 1000)) / (price * 1000)) * 100;
-
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
@@ -88,6 +85,8 @@ function update() {
 
     // Calculate the percentage difference (More value of Button 2)
     let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
+
+    console.log(percentMoreValue)
 }
 
 // Handle button states
