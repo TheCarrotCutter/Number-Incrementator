@@ -68,7 +68,7 @@ function update() {
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue + '% More Value!)';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
     // Save the updated values to localStorage
@@ -79,12 +79,6 @@ function update() {
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
-
-    // Calculate total cost for Button 1
-    let totalCostButton1 = (1000 / 2) * (price + (price + (1000 - 1) * 1));
-
-    // Calculate percentage difference in value
-    let percentMoreValue = ((totalCostButton1 - price * 1000) / price * 1000) * 100;
 }
 
 // Handle button states
