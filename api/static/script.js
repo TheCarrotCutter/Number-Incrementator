@@ -60,6 +60,17 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
 
+    // Calculate the total cost of Button 1 after buying it 1000 times
+    let totalCostButton1 = 1000 * price;
+
+    // Calculate the cost of Button 2
+    let totalCostButton2 = price * 1000;
+
+    // Calculate the percentage difference (More value of Button 2)
+    let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
+
+    console.log(percentMoreValue);
+
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
@@ -74,17 +85,7 @@ function update() {
     localStorage.setItem('total_save', total);
     localStorage.setItem('price_save', price);
 
-    // Calculate the total cost of Button 1 after buying it 1000 times
-    let totalCostButton1 = 1000 * price;
-
-    // Calculate the cost of Button 2
-    let totalCostButton2 = price * 1000;
-
-    // Calculate the percentage difference (More value of Button 2)
-    let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
-
-    console.log(percentMoreValue)
-
+    // Prevent the counter from going negative
     if (number < 0) {
         number = 0;
     }
