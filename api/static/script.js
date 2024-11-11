@@ -87,11 +87,7 @@ function update() {
     let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
 
     console.log(percentMoreValue)
-}
 
-// Handle button states
-function handleButtonStates() {
-    // Prevent the counter from going negative
     if (number < 0) {
         number = 0;
     }
