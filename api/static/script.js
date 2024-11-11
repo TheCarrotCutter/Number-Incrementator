@@ -67,7 +67,7 @@ function update() {
     let totalCostButton2 = price * 1000;
 
     // Calculate the percentage difference (More value of Button 2)
-    let percentMoreValue = ((totalCostButton2 - totalCostButton1) / totalCostButton1) * 100;
+    let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
 
     // Debugging: log percentMoreValue to check if it's calculating correctly
     console.log("totalCostButton1:", totalCostButton1);
