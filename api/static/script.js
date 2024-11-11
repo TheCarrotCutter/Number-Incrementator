@@ -61,9 +61,9 @@ function update() {
     price = 99 + increment_ammount; // Recalculate the price
 
     // Calculate the total cost for Button 1 after buying it 1000 times with increasing prices
-    let totalCostButton1 = 1000 * (2 * price + 999) / 2;
+    let totalCostButton1 = (1000 * (2 * price + 999)) / 2; // Sum of the arithmetic series
 
-    // Calculate the total cost of Button 2
+    // Calculate the total cost of Button 2 (1000 times at price * 1000)
     let totalCostButton2 = price * 1000;
 
     // Calculate the percentage difference (More value of Button 2)
