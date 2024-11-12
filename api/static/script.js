@@ -1,7 +1,7 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = parseInt(localStorage.getItem('number_save')) || 0;
-let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
-let total = parseInt(localStorage.getItem('total_save')) || 0;
+let number = atob(parseInt(localStorage.getItem('number_save')) || 0);
+let increment_ammount = atob(parseInt(localStorage.getItem('increment_ammount_save')) || 1);
+let total = atob(parseInt(localStorage.getItem('total_save')) || 0);
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -82,10 +82,10 @@ function update() {
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
     // Save the updated values to localStorage
-    localStorage.setItem('number_save', number);
-    localStorage.setItem('increment_ammount_save', increment_ammount);
-    localStorage.setItem('total_save', total);
-    localStorage.setItem('price_save', price);
+    localStorage.setItem('number_save', btoa(number));
+    localStorage.setItem('increment_ammount_save', btoa(increment_ammount));
+    localStorage.setItem('total_save', btoa(total));
+    localStorage.setItem('price_save', btoa(price));
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
@@ -109,6 +109,9 @@ function handleButtonStates() {
     // Handle "Upgrade Max" button
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
     upgradeButtonMax.disabled = number < price;
+
+    const max_upgrade_buy = document.getElementById('max_upgrade_buy');
+    upgradeButton.disabled = number < 10000;
 }
 
 // When the page loads, initialize the display and button state
