@@ -1,7 +1,7 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = atob(parseInt(localStorage.getItem('number_save')) || 0);
-let increment_ammount = atob(parseInt(localStorage.getItem('increment_ammount_save')) || 1);
-let total = atob(parseInt(localStorage.getItem('total_save')) || 0);
+let number = localStorage.getItem('number_save') ? parseInt(atob(localStorage.getItem('number_save'))) : 0;
+let increment_ammount = localStorage.getItem('increment_ammount_save') ? parseInt(atob(localStorage.getItem('increment_ammount_save'))) : 1;
+let total = localStorage.getItem('total_save') ? parseInt(atob(localStorage.getItem('total_save'))) : 0;
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -81,11 +81,11 @@ function update() {
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
-    // Save the updated values to localStorage
-    localStorage.setItem('number_save', btoa(number));
-    localStorage.setItem('increment_ammount_save', btoa(increment_ammount));
-    localStorage.setItem('total_save', btoa(total));
-    localStorage.setItem('price_save', btoa(price));
+    // Save the updated values to localStorage (encode as Base64)
+    localStorage.setItem('number_save', btoa(number.toString()));
+    localStorage.setItem('increment_ammount_save', btoa(increment_ammount.toString()));
+    localStorage.setItem('total_save', btoa(total.toString()));
+    localStorage.setItem('price_save', btoa(price.toString()));
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
