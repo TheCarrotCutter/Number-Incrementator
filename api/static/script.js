@@ -107,6 +107,9 @@ function handleButtonStates() {
     // Handle "Upgrade Max" button
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
     upgradeButtonMax.disabled = number < price;
+
+    const buyMaxUpgrade = document.getElementById('max_upgrade_buy');
+    buyMaxUpgrade.disabled = number < 10000000;
 }
 
 // When the page loads, initialize the display and button state
