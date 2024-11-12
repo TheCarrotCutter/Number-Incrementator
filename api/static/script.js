@@ -67,7 +67,7 @@ function update() {
     let totalCostButton2 = price * 1000;
 
     // Calculate the percentage difference (More value of Button 2)
-    let percentMoreValue = ((totalCostButton1 - totalCostButton2) / totalCostButton2) * 100;
+    let percentMoreValue = ((totalCostButton2 - totalCostButton1) / totalCostButton1) * 100;
 
     // Debugging: log percentMoreValue to check if it's calculating correctly
     console.log("totalCostButton1:", totalCostButton1);
@@ -77,8 +77,8 @@ function update() {
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
-    document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000) + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
+    document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
     // Save the updated values to localStorage
