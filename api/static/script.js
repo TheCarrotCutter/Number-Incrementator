@@ -70,9 +70,7 @@ function update() {
     let percentMoreValue = ((totalCostButton2 - totalCostButton1) / totalCostButton1) * 100;
 
     // Debugging: log percentMoreValue to check if it's calculating correctly
-    console.log("totalCostButton1:", totalCostButton1);
-    console.log("percentMoreValue: ", percentMoreValue);
-
+    
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
