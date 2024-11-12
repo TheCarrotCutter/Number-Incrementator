@@ -1,7 +1,20 @@
+// Helper function to safely decode Base64 values or return default values
+function safeDecodeBase64(encodedValue, defaultValue) {
+    if (encodedValue) {
+        try {
+            return parseInt(atob(encodedValue), 10);
+        } catch (e) {
+            console.error('Error decoding Base64:', e);
+            return defaultValue; // Return the default value if decoding fails
+        }
+    }
+    return defaultValue; // Return the default value if no value is found
+}
+
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = localStorage.getItem('number_save') ? parseInt(atob(localStorage.getItem('number_save'))) : 0;
-let increment_ammount = localStorage.getItem('increment_ammount_save') ? parseInt(atob(localStorage.getItem('increment_ammount_save'))) : 1;
-let total = localStorage.getItem('total_save') ? parseInt(atob(localStorage.getItem('total_save'))) : 0;
+let number = safeDecodeBase64(localStorage.getItem('number_save'), 0);
+let increment_ammount = safeDecodeBase64(localStorage.getItem('increment_ammount_save'), 1);
+let total = safeDecodeBase64(localStorage.getItem('total_save'), 0);
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
