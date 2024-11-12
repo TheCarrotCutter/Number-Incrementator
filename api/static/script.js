@@ -6,6 +6,8 @@ let total = parseInt(localStorage.getItem('total_save')) || 0;
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
 
+document.getElementById('increment_upgrade_max').style.display = 'none';
+
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by increment_ammount
@@ -52,6 +54,12 @@ function increment_upgrade_max() {
         // Update the display and localStorage
         update();
     }
+}
+
+function buy('item') {
+    if (item === max_upgrade)
+
+        document.getElementById('increment_upgrade_max').style.display = 'block';
 }
 
 // Function to update the display and save the new value to localStorage
