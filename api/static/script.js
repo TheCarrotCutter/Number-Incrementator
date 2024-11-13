@@ -56,10 +56,11 @@ function increment_upgrade_max() {
     }
 }
 
-function buy('item') {
+function buy(item) {
     if (item === max_upgrade);
         number -= 10000000
         document.getElementById('increment_upgrade_max').style.display = 'block';
+        update()
 }
 
 // Function to update the display and save the new value to localStorage
@@ -80,8 +81,8 @@ function update() {
     // Debugging: log percentMoreValue to check if it's calculating correctly
     
     // Update the counter, increment button text, and total display
-    document.getElementById('counter').textContent = formattedNumber;
-    document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount;
+    document.getElementById('counter').textContent = formattedNumber.toLocaleString();
+    document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
