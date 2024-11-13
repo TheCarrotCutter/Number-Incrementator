@@ -57,8 +57,8 @@ function increment_upgrade_max() {
 }
 
 function buy('item') {
-    if (item === max_upgrade)
-
+    if (item === max_upgrade);
+        number -= 10000000
         document.getElementById('increment_upgrade_max').style.display = 'block';
 }
 
@@ -99,10 +99,6 @@ function update() {
 
 // Handle button states
 function handleButtonStates() {
-    // Prevent the counter from going negative
-    if (number < 0) {
-        number = 0;
-    }
 
     // Handle "Upgrade" button for 100 increments
     const upgradeButton = document.getElementById('increment_upgrade');
