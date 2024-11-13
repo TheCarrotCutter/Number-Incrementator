@@ -60,6 +60,7 @@ function buy(item) {
     if (item === max_upgrade);
         number -= 10000000
         document.getElementById('increment_upgrade_max').style.display = 'block';
+        document.getElementById('max_upgrade_buy').style.display = 'none';
         update()
 }
 
