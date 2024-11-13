@@ -69,7 +69,7 @@ function buy(item) {
     if (item === 'percentages') {
         if (number >= 10000) {
             document.getElementById('percentages_buy').style.display = 'none';  // Show Max Upgrades button
-            percentages_shown = 0;
+            percentages_shown = 1;
         }
     }
     // Handle other items (e.g., percentages) if needed
