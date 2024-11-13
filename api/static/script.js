@@ -2,7 +2,6 @@
 let number = parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
-let percentages_shown = 0;
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -66,13 +65,6 @@ function buy(item) {
             alert("Not enough resources for Max Upgrade!");  // Alert if not enough resources
         }
     }
-    if (item === 'percentages') {
-        if (number >= 10000) {
-            document.getElementById('percentages_buy').style.display = 'none';  // Show Max Upgrades button
-            percentages_shown = 1;
-        }
-    }
-    // Handle other items (e.g., percentages) if needed
 }
 
 
@@ -81,32 +73,15 @@ function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
-
-    // Calculate the total cost for Button 1 after buying it 1000 times
-    let totalCostButton1 = (1000 * (2 * price + 999)) / 2;  // Sum of the arithmetic series
-
-    // Calculate the total cost of Button 2 (1000 times at price * 1000)
-    let totalCostButton2 = price * 1000;
-
-    // Calculate the percentage difference (More value of Button 2)
-    let percentMoreValue = ((totalCostButton2 - totalCostButton1) / totalCostButton1) * 100;
-
-    // Debugging: log percentMoreValue to check if it's calculating correctly
-    
+  
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber.toLocaleString();
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
+    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
 
-    if (percentages_shown == 0) {
-        document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
-    } else {
-         document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
-    }
-
-    
     // Save the updated values to localStorage
     localStorage.setItem('number_save', number);
     localStorage.setItem('increment_ammount_save', increment_ammount);
