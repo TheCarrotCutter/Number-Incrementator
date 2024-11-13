@@ -65,6 +65,12 @@ function buy(item) {
             alert("Not enough resources for Max Upgrade!");  // Alert if not enough resources
         }
     }
+    if (item === 'percentages') {
+        if (number >= 10000) {
+            document.getElementById('percentages_buy').style.display = 'none';  // Show Max Upgrades button
+            percentages_shown = 0;
+        }
+    }
     // Handle other items (e.g., percentages) if needed
 }
 
@@ -91,9 +97,15 @@ function update() {
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
-    document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
 
+    if (percentages_shown == 0) {
+        document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
+    } else {
+         document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ') (' + percentMoreValue.toFixed(2) + '% More Value!)';
+    }
+
+    
     // Save the updated values to localStorage
     localStorage.setItem('number_save', number);
     localStorage.setItem('increment_ammount_save', increment_ammount);
