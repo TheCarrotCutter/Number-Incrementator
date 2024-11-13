@@ -58,7 +58,8 @@ function buy(item) {
     if (item === 'max_upgrade') {
         if (number >= 10000000) {  // Check if player has enough resources (10,000,000)
             number -= 10000000;  // Subtract the cost for the max upgrade
-            document.getElementById('increment_upgrade_max').style.display = 'block';  // Show Max Upgrades button
+            document.getElementById('increment_upgrade_max').style.display = 'inline';  // Show Max Upgrades button
+            document.getElementById('max_upgrade_buy').style.display = 'none';  // Show Max Upgrades button
             update();  // Update the display
         } else {
             alert("Not enough resources for Max Upgrade!");  // Alert if not enough resources
