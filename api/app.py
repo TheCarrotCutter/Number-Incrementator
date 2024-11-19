@@ -3,7 +3,7 @@ import requests
 from flask import Flask, render_template, jsonify, request
 
 # Initialize Flask app
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask(__name__, static_folder='api/static', template_folder='api/templates')
 
 # Supabase Configuration (make sure to add your own Supabase URL and Key)
 SUPABASE_URL = os.getenv("SUPABASE_URL", "https://your-supabase-url.supabase.co")
