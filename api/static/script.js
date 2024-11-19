@@ -1,7 +1,20 @@
-// Load the stored counter value from localStorage, default to 0 if not found
-let number = parseInt(localStorage.getItem('number_save')) || 0;
-let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
-let total = parseInt(localStorage.getItem('total_save')) || 0;
+async function loadGameState() {
+    try {
+        const response = await fetch('/api/get_game_state');
+        const data = await response.json();
+        
+        if (data.success) {
+            number = data.gameState.number || 0;
+            increment_ammount = data.gameState.increment_amount || 1;
+            total = data.gameState.total || 0;
+            update();
+        } else {
+            console.error('Error loading game state');
+        }
+    } catch (error) {
+        console.error('Error loading game state:', error);
+    }
+}
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -69,29 +82,41 @@ function buy(item) {
 
 
 // Function to update the display and save the new value to localStorage
-function update() {
+async function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
-  
-    // Update the counter, increment button text, and total display
-    document.getElementById('counter').textContent = formattedNumber.toLocaleString();
+
+    // Update the UI elements as usual
+    document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
 
-    // Save the updated values to localStorage
-    localStorage.setItem('number_save', number);
-    localStorage.setItem('increment_ammount_save', increment_ammount);
-    localStorage.setItem('total_save', total);
-    localStorage.setItem('price_save', price);
-
-    // Handle button states (enable/disable based on number)
-    handleButtonStates();
+    // Send the updated state to the backend
+    try {
+        const response = await fetch('/api/update_game_state', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                number: number,
+                increment_ammount: increment_ammount,
+                total: total,
+                price: price
+            })
+        });
+        const data = await response.json();
+        if (!data.success) {
+            console.error('Error updating game state');
+        }
+    } catch (error) {
+        console.error('Error updating game state:', error);
+    }
 }
-
 // Handle button states
 function handleButtonStates() {
 
