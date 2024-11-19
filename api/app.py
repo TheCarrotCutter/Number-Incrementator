@@ -1,6 +1,11 @@
 import os
 import requests
 from flask import Flask, render_template, jsonify, request
+from dotenv import load_dotenv
+
+
+load_dotenv()  # Load environment variables from .env file
+
 
 # Initialize Flask app
 app = Flask(__name__, static_folder='api/static', template_folder='api/templates')
