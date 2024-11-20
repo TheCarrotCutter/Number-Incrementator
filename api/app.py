@@ -15,6 +15,3 @@ def index():
     app.counter += 1  # Increment counter with each visit
 
     return render_template('index.html', counter=app.counter)
-
-if __name__ == "__main__":
-    app.run(debug=True)
