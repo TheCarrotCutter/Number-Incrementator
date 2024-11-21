@@ -1,6 +1,10 @@
 from flask import Flask, render_template
 from supabase import create_client, Client
 import os
+from dotenv import load_dotenv  # Import dotenv to load .env variables
+
+# Load environment variables from the .env file
+load_dotenv()
 
 # Get the Supabase URL and API key from environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")
