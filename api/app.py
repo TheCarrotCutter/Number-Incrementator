@@ -6,8 +6,8 @@ import os
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-console.log(SUPABASE_URL)
-console.log(SUPABASE_KEY)
+print(SUPABASE_URL)
+print(SUPABASE_KEY)
 
 # Initialize the Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
