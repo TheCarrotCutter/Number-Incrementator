@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+print("All Environment Variables:", os.environ)  # Print all env variables to check
+
 # Get the Supabase URL and API key from environment variables
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
