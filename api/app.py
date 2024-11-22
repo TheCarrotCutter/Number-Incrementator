@@ -7,8 +7,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Corrected: Get the Supabase URL and API key from environment variables
-SUPABASE_URL = "https://xsdcpsjkyoqlkchmjkse.supabase.co"  # URL is now a valid string literal
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s"  # Key is now a valid string literal
+SUPABASE_URL = os.getenv("SUPABASE_URL")  # Now fetching from environment variable
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")  # Now fetching from environment variable
+
+# Debugging: log the environment variables to confirm they're loaded
+print("SUPABASE_URL:", SUPABASE_URL)
+print("SUPABASE_KEY:", SUPABASE_KEY)
 
 # Initialize the Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
@@ -19,12 +23,15 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     try:
+        # Debugging: Log the query being executed
+        print(f"Executing query: SELECT counter FROM counters WHERE id = 1")
+
         # Check if counter exists in Supabase, otherwise initialize it
         response = supabase.table('counters').select('counter').filter('id', 'eq', 1).execute()
 
-
-        # Debugging: Check if the response is as expected
-        print("Response Data:", response.data)
+        if response.error:
+            print(f"Error from Supabase: {response.error}")  # Log Supabase error
+            raise Exception("Failed to query Supabase")
 
         if response.data:
             # Get the existing counter value
@@ -38,7 +45,7 @@ def index():
             supabase.table('counters').insert({'id': 1, 'counter': counter}).execute()
 
         return render_template('index.html', counter=counter)
-    
+
     except Exception as e:
-        print("Error:", str(e))  # This will print the error to your console for debugging
-        return "An error occurred while processing your request.", 500
+        print(f"Error during processing: {e}")
+        return "An error occurred, please check the server logs.", 500
