@@ -1,51 +1,38 @@
 from flask import Flask, render_template
 from supabase import create_client, Client
 import os
-from dotenv import load_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
-
-# Corrected: Get the Supabase URL and API key from environment variables
-SUPABASE_URL = os.getenv("SUPABASE_URL")  # Now fetching from environment variable
-SUPABASE_KEY = os.getenv("SUPABASE_KEY")  # Now fetching from environment variable
-
-# Debugging: log the environment variables to confirm they're loaded
-print("SUPABASE_URL:", SUPABASE_URL)
-print("SUPABASE_KEY:", SUPABASE_KEY)
+# Supabase URL and API Key (hardcoded for testing)
+SUPABASE_URL = "https://xsdcpsjkyoqlkchmjkse.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s"  # Replace this with your actual key
 
 # Initialize the Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
+# Initialize Flask app
 app = Flask(__name__)
 
-# Example route for testing server-side storage
+# Route to handle the counter page
 @app.route('/')
 def index():
-    try:
-        # Debugging: Log the query being executed
-        print(f"Executing query: SELECT counter FROM counters WHERE id = 1")
+    # Check if the counter record exists in Supabase
+    response = supabase.table('counters').select('counter').eq('id', 1).execute()
 
-        # Check if counter exists in Supabase, otherwise initialize it
-        response = supabase.table('counters').select('counter').filter('id', 'eq', 1).execute()
+    if response.data:
+        # Get the existing counter value
+        counter = response.data[0]['counter']
+        counter += 1  # Increment the counter by 1
 
-        if response.error:
-            print(f"Error from Supabase: {response.error}")  # Log Supabase error
-            raise Exception("Failed to query Supabase")
+        # Update the counter value in Supabase
+        supabase.table('counters').update({'counter': counter}).eq('id', 1).execute()
+    else:
+        # If no counter record exists, initialize it
+        counter = 1
+        supabase.table('counters').insert({'id': 1, 'counter': counter}).execute()
 
-        if response.data:
-            # Get the existing counter value
-            counter = response.data[0]['counter']
-            counter += 1  # Increment counter
-            # Update the counter value in Supabase
-            supabase.table('counters').update({'counter': counter}).eq('id', 1).execute()
-        else:
-            # If no counter exists, create one
-            counter = 1
-            supabase.table('counters').insert({'id': 1, 'counter': counter}).execute()
+    # Return the updated counter value in the response
+    return f"Counter value: {counter}"
 
-        return render_template('index.html', counter=counter)
-
-    except Exception as e:
-        print(f"Error during processing: {e}")
-        return "An error occurred, please check the server logs.", 500
+# Start the Flask app
+if __name__ == '__main__':
+    app.run(debug=True)
