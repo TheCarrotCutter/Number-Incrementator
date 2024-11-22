@@ -39,6 +39,3 @@ def index():
         supabase.table('counters').insert({'id': 1, 'counter': counter}).execute()
 
     return render_template('index.html', counter=counter)
-
-if __name__ == "__main__":
-    app.run(debug=True)
