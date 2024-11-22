@@ -6,12 +6,11 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-# Get the Supabase URL and API key from environment variables
-SUPABASE_URL = https://xsdcpsjkyoqlkchmjkse.supabase.co
-SUPABASE_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s
+# Corrected: Get the Supabase URL and API key from environment variables
+SUPABASE_URL = "https://xsdcpsjkyoqlkchmjkse.supabase.co"  # URL is now a valid string literal
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s"  # Key is now a valid string literal
 
 # Debugging: log the environment variables to confirm they're loaded
-
 print("All Environment Variables:", os.environ)  # Print all env variables to check
 
 print("SUPABASE_URL:", SUPABASE_URL)
@@ -40,3 +39,6 @@ def index():
         supabase.table('counters').insert({'id': 1, 'counter': counter}).execute()
 
     return render_template('index.html', counter=counter)
+
+if __name__ == "__main__":
+    app.run(debug=True)
