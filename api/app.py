@@ -20,7 +20,8 @@ app = Flask(__name__)
 def index():
     try:
         # Check if counter exists in Supabase, otherwise initialize it
-        response = supabase.table('counters').select('counter').eq('id', 1).execute()
+        response = supabase.table('counters').select('counter').filter('id', 'eq', 1).execute()
+
 
         # Debugging: Check if the response is as expected
         print("Response Data:", response.data)
