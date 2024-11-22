@@ -32,7 +32,3 @@ def index():
 
     # Return the updated counter value in the response
     return f"Counter value: {counter}"
-
-# Start the Flask app
-if __name__ == '__main__':
-    app.run(debug=True)
