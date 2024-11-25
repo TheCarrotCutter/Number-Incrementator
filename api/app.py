@@ -9,6 +9,8 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 # Initialize the Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
+INSERT INTO counters (id, counter) VALUES (1, 0);
+
 # Route to handle the counter page
 @app.route('/')
 def index():
