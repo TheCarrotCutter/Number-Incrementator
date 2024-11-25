@@ -13,6 +13,3 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 @app.route('/')
 def index():
     return "Hello, world!"
-
-if __name__ == '__main__':
-    app.run(debug=True)
