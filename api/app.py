@@ -7,6 +7,9 @@ app = Flask(__name__)
 SUPABASE_URL = "https://xsdcpsjkyoqlkchmjkse.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s"
 
+print(SUPABASE_URL)
+print(SUPABASE_KEY)
+
 # Initialize the Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
