@@ -1,17 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask
 from supabase import create_client, Client
-import os
 
-# Supabase URL and API Key (hardcoded for testing)
+app = Flask(__name__)
+
+# Supabase URL and API Key
 SUPABASE_URL = "https://xsdcpsjkyoqlkchmjkse.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s"  # Replace this with your actual key
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzZGNwc2preW9xbGtjaG1qa3NlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5NTkxMDEsImV4cCI6MjA0NzUzNTEwMX0.6YemIMniQSkg_lvCneFhDinF4j6yt2u3mSP7Hh4f9_s"
 
 # Initialize the Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-INSERT INTO counters (id, counter) VALUES (1, 0);
-
-# Route to handle the counter page
 @app.route('/')
 def index():
     # Check if the counter record exists in Supabase
@@ -31,3 +29,6 @@ def index():
 
     # Return the updated counter value in the response
     return f"Counter value: {counter}"
+
+if __name__ == '__main__':
+    app.run(debug=True)
