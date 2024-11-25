@@ -20,11 +20,12 @@ def index():
         counter = response.data[0]['counter']
         counter += 1  # Increment the counter by 1
 
-        # Update the counter value in Supabase
+        # Update the counter value in Supabase using the correct supabase-py syntax
         supabase.table('counters').update({'counter': counter}).eq('id', 1).execute()
     else:
         # If no counter record exists, initialize it
         counter = 1
+        # Use the correct supabase-py syntax to insert
         supabase.table('counters').insert({'id': 1, 'counter': counter}).execute()
 
     # Return the updated counter value in the response
