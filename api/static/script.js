@@ -4,7 +4,7 @@ let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save'))
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 
 let vivible_items = ['increment_upgrade_max'];
-const items = document.querySelectorAll('showable');
+const items = document.querySelectorAll('.showable');
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
