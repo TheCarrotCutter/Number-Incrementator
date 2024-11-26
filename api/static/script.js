@@ -3,8 +3,8 @@ let number = parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 
-let vivible_items = ['increment_upgrade_max'];
-const items = document.querySelectorAll('.showable');
+let visible_items = ['increment_upgrade_max'];  // List of visible item IDs
+const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -62,7 +62,7 @@ function buy(item) {
         if (number >= 10000000) {  // Check if player has enough resources (10,000,000)
             number -= 10000000;  // Subtract the cost for the max upgrade
             document.getElementById('increment_upgrade_max').style.display = 'inline';  // Show Max Upgrades button
-            document.getElementById('max_upgrade_buy').style.display = 'none';  // Show Max Upgrades button
+            document.getElementById('max_upgrade_buy').style.display = 'none';  // Hide the Max Upgrades purchase button
             update();  // Update the display
         }
     }
@@ -75,7 +75,7 @@ function update() {
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
 
-    // Loop through each item
+    // Loop through each item (elements with 'showable' class)
     items.forEach(item => {
       // Check if the item's id is in the visibleItems list
       if (visible_items.includes(item.id)) {
@@ -86,7 +86,7 @@ function update() {
     });
   
     // Update the counter, increment button text, and total display
-    document.getElementById('counter').textContent = formattedNumber.toLocaleString();
+    document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
@@ -105,16 +105,12 @@ function update() {
 
 // Handle button states
 function handleButtonStates() {
-
-    // Handle "Upgrade" button for 100 increments
     const upgradeButton = document.getElementById('increment_upgrade');
     upgradeButton.disabled = number < price;
 
-    // Handle "Upgrade 1000" button for 10000 increments
     const upgradeButton1000 = document.getElementById('increment_upgrade_1000');
     upgradeButton1000.disabled = number < price * 1000;
 
-    // Handle "Upgrade Max" button
     const upgradeButtonMax = document.getElementById('increment_upgrade_max');
     upgradeButtonMax.disabled = number < price;
 
