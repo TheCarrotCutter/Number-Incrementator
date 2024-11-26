@@ -1,1 +1,33 @@
+/* Basic styling for the form and result area */
+#myForm {
+    /* Add your desired styles here */
+}
 
+#result {
+    /* Add your desired styles here */
+}
+
+.main_button {
+    display: block;
+    width: auto;
+    height: 35px;
+    font-size: 120%;
+    margin: 8px 2px
+}
+
+.total {
+    position: fixed;
+    top: 3.75%;
+    right: 1%;
+}
+
+button {
+    font-size: 15px;
+    width: auto;
+    height: 28px;
+}
+
+div {
+    border: 2px solid #333;
+    padding: 15px;
+}
