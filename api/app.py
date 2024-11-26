@@ -1,15 +1,7 @@
-from flask import Flask
-from supabase import create_client, Client
+from flask import Flask, render_template
 
-app = Flask(__name__)
-
-# Supabase URL and API Key
-SUPABASE_URL = "https://xsdcpsjkyoqlkchmjkse.supabase.co"
-SUPABASE_KEY = "your-api-key-here"
-
-# Initialize the Supabase client
-supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
 def index():
-    return "Hello, world!"
+    return render_template('index.html')
