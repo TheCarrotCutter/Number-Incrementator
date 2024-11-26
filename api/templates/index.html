@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Test</title>
+    <title>Number, Inc.</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
-    <h1>Welcome to the Flask App!</h1>
-    <p>The page has been visited {{ counter }} times.</p>
+    <label id='new_unlock_label' class='new_unlock_label'>0</label>
+    <h1 id="counter" class="counter">0</h1>
+    <h1 id="total" class="total">0</h1>
+    
+    <!-- Increment button -->
+    <button id='main_button' type="button" class="main_button" onclick="increment()">Increment</button>
+
+    <div class="upgrade_button_box">
+        <!-- Upgrade button (100) -->
+        <button id="increment_upgrade" type="button" class="upgrade_button_100" onclick="increment_upgrade()">Upgrade (100)</button>
+    
+        <!-- Upgrade button (1000) -->
+        <button id="increment_upgrade_1000" type="button" class="upgrade_button_1000" onclick="increment_upgrade_1000()">Upgrade x1,000 (100,000) (500% More Value!)</button>
+
+        <!-- Max upgrade button (hidden initially) -->
+        <button id="increment_upgrade_max" type="button" class="upgrade_button_max" onclick="increment_upgrade_max()">Max Upgrades (Extra Value!)</button>
+    </div>
+
+    <div class="shop_box">
+        <!-- Max Upgrade buy button -->
+        <button id="max_upgrade_buy" type="button" class="max_upgrade_buy" onclick="buy('max_upgrade')">Max Upgrades Button (10,000,000)</button>
+            
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
