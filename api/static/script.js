@@ -120,6 +120,7 @@ function handleButtonStates() {
 
 // When the page loads, initialize the display and button state
 document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('max_upgrade_buy').style.display = 'inline';
     document.getElementById('increment_upgrade_max').style.display = 'none';
     update();  // Update the display with the value from localStorage and check button state
 });
