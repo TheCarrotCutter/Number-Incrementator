@@ -2,8 +2,9 @@
 let number = parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
+
 let vivible_items = ['increment_upgrade_max'];
-const items = document.querySelectorAll('');
+const items = document.querySelectorAll('showable');
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -73,6 +74,16 @@ function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
+
+    // Loop through each item
+    items.forEach(item => {
+      // Check if the item's id is in the visibleItems list
+      if (visible_items.includes(item.id)) {
+        item.style.display = 'block';  // Show the item
+      } else {
+        item.style.display = 'none';   // Hide the item
+      }
+    });
   
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber.toLocaleString();
