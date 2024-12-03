@@ -124,7 +124,5 @@ function handleButtonStates() {
 // When the page loads, initialize the display and button state
 document.addEventListener('DOMContentLoaded', function() {
     // Ensure that the max upgrade button starts visible
-    document.getElementById('max_upgrade_buy').style.display = 'inline';  // Show the max upgrade buy button
-    document.getElementById('increment_upgrade_max').style.display = 'none';  // Initially hide the max upgrade button
     update();  // Update the display with the value from localStorage and check button state
 });
