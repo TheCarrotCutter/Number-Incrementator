@@ -67,7 +67,7 @@ function buy(item) {
             
             // Hide the max upgrade purchase button and show the max upgrade button
             document.getElementById('increment_upgrade_max').style.display = 'inline';  // Show the max upgrade button
-            document.getElementById('max_upgrade_buy').style.display = 'inline';  // Hide the max upgrade purchase button
+            document.getElementById('max_upgrade_buy').style.display = 'none';  // Hide the max upgrade purchase button
 
             update();  // Update the display
         }
