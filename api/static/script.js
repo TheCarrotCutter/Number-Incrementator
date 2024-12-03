@@ -3,7 +3,7 @@ let number = 1000000000; // number = parseInt(localStorage.getItem('number_save'
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 
-let visible_items = ['increment_upgrade_max'];  // List of visible item IDs
+let visible_items = ['max_upgrade_buy'];  // List of visible item IDs
 const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
 
 // Starting price of buttons, default to 99 + increment_ammount
@@ -64,10 +64,8 @@ function buy(item) {
 
             // Add 'increment_upgrade_max' to visible_items to show the button
             visible_items.push('increment_upgrade_max');
-            
-            // Hide the max upgrade purchase button and show the max upgrade button
-            document.getElementById('increment_upgrade_max').style.display = 'inline';  // Show the max upgrade button
-            document.getElementById('max_upgrade_buy').style.display = 'none';  // Hide the max upgrade purchase button
+
+            visible_items = visible_items.filter(item => item !== 'max_upgrade_buy');  // Removes the item with value 3
 
             update();  // Update the display
         }
