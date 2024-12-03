@@ -1,5 +1,5 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = 1000000000;//number = parseInt(localStorage.getItem('number_save')) || 0;
+let number = 1000000000; // number = parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 
@@ -61,13 +61,18 @@ function buy(item) {
     if (item === 'max_upgrade') {
         if (number >= 10000000) {  // Check if player has enough resources (10,000,000)
             number -= 10000000;  // Subtract the cost for the max upgrade
+
+            // Add 'increment_upgrade_max' to visible_items to show the button
             visible_items.push('increment_upgrade_max');
-            document.getElementById('max_upgrade_buy').style.display = 'none';  // Hide the Max Upgrades purchase button
+            
+            // Hide the max upgrade purchase button and show the max upgrade button
+            document.getElementById('increment_upgrade_max').style.display = 'inline';  // Show the max upgrade button
+            document.getElementById('max_upgrade_buy').style.display = 'none';  // Hide the max upgrade purchase button
+
             update();  // Update the display
         }
     }
 }
-
 
 // Function to update the display and save the new value to localStorage
 function update() {
@@ -77,14 +82,14 @@ function update() {
 
     // Loop through each item (elements with 'showable' class)
     items.forEach(item => {
-      // Check if the item's id is in the visibleItems list
-      if (visible_items.includes(item.id)) {
-        item.style.display = 'block';  // Show the item
-      } else {
-        item.style.display = 'none';   // Hide the item
-      }
+        // Check if the item's id is in the visibleItems list
+        if (visible_items.includes(item.id)) {
+            item.style.display = 'block';  // Show the item
+        } else {
+            item.style.display = 'none';   // Hide the item
+        }
     });
-  
+
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
@@ -120,7 +125,8 @@ function handleButtonStates() {
 
 // When the page loads, initialize the display and button state
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('max_upgrade_buy').style.display = 'inline';
-    document.getElementById('increment_upgrade_max').style.display = 'none';
+    // Ensure that the max upgrade button starts visible
+    document.getElementById('max_upgrade_buy').style.display = 'inline';  // Show the max upgrade buy button
+    document.getElementById('increment_upgrade_max').style.display = 'none';  // Initially hide the max upgrade button
     update();  // Update the display with the value from localStorage and check button state
 });
