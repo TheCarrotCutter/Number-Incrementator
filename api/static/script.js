@@ -3,7 +3,8 @@ let number = 1000000000; // number = parseInt(localStorage.getItem('number_save'
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 
-let visible_items = JSON.parse(localStorage.getItem('visible_items_save') || ['max_upgrade_buy']);  // List of visible item IDs
+// Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
+let visible_items = JSON.parse(localStorage.getItem('visible_items_save')) || ['max_upgrade_buy'];  // List of visible item IDs
 const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
 
 // Starting price of buttons, default to 99 + increment_ammount
@@ -65,7 +66,7 @@ function buy(item) {
             // Add 'increment_upgrade_max' to visible_items to show the button
             visible_items.push('increment_upgrade_max');
 
-            visible_items = visible_items.filter(item => item !== 'max_upgrade_buy');  // Removes the item with value 3
+            visible_items = visible_items.filter(item => item !== 'max_upgrade_buy');  // Removes the item with value 'max_upgrade_buy'
 
             update();  // Update the display
         }
@@ -97,7 +98,7 @@ function update() {
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
 
     // Save the updated values to localStorage
-    localStorage.setItem('visible_items_save', JSON.stringify(visible_items))
+    localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
     localStorage.setItem('number_save', number);
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
