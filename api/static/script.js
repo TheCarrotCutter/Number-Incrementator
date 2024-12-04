@@ -82,7 +82,7 @@ function update() {
     items.forEach(item => {
         // Check if the item's id is in the visibleItems list
         if (visible_items.includes(item.id)) {
-            item.style.display = 'block';  // Show the item
+            item.style.display = 'inline';  // Show the item
         } else {
             item.style.display = 'none';   // Hide the item
         }
