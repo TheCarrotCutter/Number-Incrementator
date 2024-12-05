@@ -1,36 +1,11 @@
-// Helper function to Base64 encode a value
-function encodeToBase64(value) {
-    return btoa(JSON.stringify(value)); // Ensure the value is stringified before encoding
-}
-
-// Helper function to Base64 decode a value
-function decodeFromBase64(value) {
-    return JSON.parse(atob(value)); // Parse the decoded Base64 string back to its original form
-}
-
-// Initialize variables
-let number = 0;
-let increment_ammount = 1;
-let total = 0;
-let visible_items = ['max_upgrade_buy'];
-const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
-
 // Load the stored counter value from localStorage, default to 0 if not found
-if (localStorage.getItem('number_save')) {
-    number = decodeFromBase64(localStorage.getItem('number_save'));
-} 
+let number = parseInt(localStorage.getItem('number_save')) || 0;
+let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
+let total = parseInt(localStorage.getItem('total_save')) || 0;
 
-if (localStorage.getItem('increment_ammount_save')) {
-    increment_ammount = decodeFromBase64(localStorage.getItem('increment_ammount_save'));
-}
-
-if (localStorage.getItem('total_save')) {
-    total = decodeFromBase64(localStorage.getItem('total_save'));
-}
-
-if (localStorage.getItem('visible_items_save')) {
-    visible_items = decodeFromBase64(localStorage.getItem('visible_items_save'));
-}
+// Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
+let visible_items = JSON.parse(localStorage.getItem('visible_items_save')) || ['max_upgrade_buy'];  // List of visible item IDs
+const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -122,12 +97,12 @@ function update() {
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
 
-    // Save the updated values to localStorage (encoded in Base64)
-    localStorage.setItem('visible_items_save', encodeToBase64(visible_items)); // stringify before encoding
-    localStorage.setItem('number_save', encodeToBase64(number));  // Ensure this is a string
-    localStorage.setItem('increment_ammount_save', encodeToBase64(increment_ammount));  // Ensure this is a string
-    localStorage.setItem('total_save', encodeToBase64(total));  // Ensure this is a string
-    localStorage.setItem('price_save', encodeToBase64(price));  // Ensure this is a string
+    // Save the updated values to localStorage
+    localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
+    localStorage.setItem('number_save', number);
+    localStorage.setItem('increment_ammount_save', increment_ammount);
+    localStorage.setItem('total_save', total);
+    localStorage.setItem('price_save', price);
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
