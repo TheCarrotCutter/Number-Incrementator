@@ -1,10 +1,20 @@
+// Helper function to Base64 encode a value
+function encodeToBase64(value) {
+    return btoa(JSON.stringify(value));
+}
+
+// Helper function to Base64 decode a value
+function decodeFromBase64(value) {
+    return JSON.parse(atob(value));
+}
+
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = parseInt(localStorage.getItem('number_save')) || 0;
-let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
-let total = parseInt(localStorage.getItem('total_save')) || 0;
+let number = decodeFromBase64(localStorage.getItem('number_save')) || 0;
+let increment_ammount = decodeFromBase64(localStorage.getItem('increment_ammount_save')) || 1;
+let total = decodeFromBase64(localStorage.getItem('total_save')) || 0;
 
 // Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
-let visible_items = JSON.parse(localStorage.getItem('visible_items_save')) || ['max_upgrade_buy'];  // List of visible item IDs
+let visible_items = decodeFromBase64(localStorage.getItem('visible_items_save')) || ['max_upgrade_buy'];  // List of visible item IDs
 const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
 
 // Starting price of buttons, default to 99 + increment_ammount
@@ -97,12 +107,12 @@ function update() {
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
 
-    // Save the updated values to localStorage
-    localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
-    localStorage.setItem('number_save', number);
-    localStorage.setItem('increment_ammount_save', increment_ammount);
-    localStorage.setItem('total_save', total);
-    localStorage.setItem('price_save', price);
+    // Save the updated values to localStorage (encoded in Base64)
+    localStorage.setItem('visible_items_save', encodeToBase64(visible_items));
+    localStorage.setItem('number_save', encodeToBase64(number));
+    localStorage.setItem('increment_ammount_save', encodeToBase64(increment_ammount));
+    localStorage.setItem('total_save', encodeToBase64(total));
+    localStorage.setItem('price_save', encodeToBase64(price));
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
