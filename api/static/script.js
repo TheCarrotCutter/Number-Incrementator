@@ -1,17 +1,19 @@
 // Helper function to Base64 encode a value
 function encodeToBase64(value) {
-    return btoa(JSON.stringify(value));
+    // Ensure the value is stringified before encoding
+    return btoa(JSON.stringify(value)); 
 }
 
 // Helper function to Base64 decode a value
 function decodeFromBase64(value) {
+    // Parse the decoded Base64 string back to its original form
     return JSON.parse(atob(value));
 }
 
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = decodeFromBase64(localStorage.getItem('number_save')) || 0;
-let increment_ammount = decodeFromBase64(localStorage.getItem('increment_ammount_save')) || 1;
-let total = decodeFromBase64(localStorage.getItem('total_save')) || 0;
+let number = decodeFromBase64(localStorage.getItem('number_save')) || 0;  // Will be a number
+let increment_ammount = decodeFromBase64(localStorage.getItem('increment_ammount_save')) || 1;  // Will be a number
+let total = decodeFromBase64(localStorage.getItem('total_save')) || 0;  // Will be a number
 
 // Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
 let visible_items = decodeFromBase64(localStorage.getItem('visible_items_save')) || ['max_upgrade_buy'];  // List of visible item IDs
@@ -109,10 +111,10 @@ function update() {
 
     // Save the updated values to localStorage (encoded in Base64)
     localStorage.setItem('visible_items_save', encodeToBase64(visible_items));
-    localStorage.setItem('number_save', encodeToBase64(number));
-    localStorage.setItem('increment_ammount_save', encodeToBase64(increment_ammount));
-    localStorage.setItem('total_save', encodeToBase64(total));
-    localStorage.setItem('price_save', encodeToBase64(price));
+    localStorage.setItem('number_save', encodeToBase64(number));  // Make sure this is a string
+    localStorage.setItem('increment_ammount_save', encodeToBase64(increment_ammount));  // Make sure this is a string
+    localStorage.setItem('total_save', encodeToBase64(total));  // Make sure this is a string
+    localStorage.setItem('price_save', encodeToBase64(price));  // Make sure this is a string
 
     // Handle button states (enable/disable based on number)
     handleButtonStates();
