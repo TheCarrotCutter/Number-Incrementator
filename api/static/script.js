@@ -70,6 +70,14 @@ function buy(item) {
 
             update();  // Update the display
         }
+    if (item == 'idle_box') {
+        if (number >= 100000000) {
+            number -= 100000000;
+
+            visible_items.push('idle_box');
+
+            visible_items = visible_items.filter(item => item !== 'idle_box_buy');
+        }
     }
 }
 
