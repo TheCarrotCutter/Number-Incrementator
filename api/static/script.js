@@ -57,29 +57,26 @@ function increment_upgrade_max() {
         update();
     }
 }
-
 function buy(item) {
     if (item === 'max_upgrade') {
-        if (number >= 10000000) {  // Check if player has enough resources (10,000,000)
-            number -= 10000000;  // Subtract the cost for the max upgrade
-
-            // Add 'increment_upgrade_max' to visible_items to show the button
+        if (number >= 10000000) {
+            number -= 10000000;
             visible_items.push('increment_upgrade_max');
-
-            visible_items = visible_items.filter(item => item !== 'max_upgrade_buy');  // Removes the item with value 'max_upgrade_buy'
-
-            update();  // Update the display
-        }
-    if (item == 'idle_box') {
-        if (number >= 100000000) {
-            number -= 100000000;
-
-            visible_items.push('idle_box');
-
-            visible_items = visible_items.filter(item => item !== 'idle_box_buy');
+            visible_items = visible_items.filter(item => item !== 'max_upgrade_buy');
+            update();
         }
     }
-}
+
+    if (item === 'idle_box') {
+        if (number >= 100000000) {
+            number -= 100000000;
+            visible_items.push('idle_box');
+            visible_items = visible_items.filter(item => item !== 'idle_box_buy');
+            update(); // Add update here if needed
+        }
+    }
+}  // This is the closing brace for the 'buy' function
+
 
 // Function to update the display and save the new value to localStorage
 function update() {
