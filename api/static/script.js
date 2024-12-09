@@ -121,12 +121,6 @@ function update() {
     localStorage.setItem('total_save', total);
     localStorage.setItem('price_save', price);
 
-    // Handle button states (enable/disable based on number)
-    handleButtonStates();
-}
-
-// Handle button states
-function handleButtonStates() {
     const upgradeButton = document.getElementById('increment_upgrade');
     upgradeButton.disabled = number < price;
 
@@ -140,7 +134,7 @@ function handleButtonStates() {
     buyMaxUpgrade.disabled = number < 10000000;
 
     const buyIdleUpgrades = document.getElementById('idle_box_buy');
-    buyMaxUpgrade.disabled = number < 100000000;
+    buyIdleUpgrades.disabled = number < 100000000;
 }
 
 // When the page loads, initialize the display and button state
