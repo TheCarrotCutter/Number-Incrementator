@@ -5,7 +5,9 @@ let total = parseInt(localStorage.getItem('total_save')) || 0;
 
 // Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
 let visible_items = JSON.parse(localStorage.getItem('visible_items_save')) || ['max_upgrade_buy'];  // List of visible item IDs
+let bought_items = JSON.parse(localStorage.getItem('bought_items_save')) || [''];  // List of visible item IDs
 const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
+const shop_items = document.querySelectorAll('.shop_item'); // Select elements with class 'shop_item'
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
@@ -62,7 +64,7 @@ function buy(item) {
         if (number >= 10000000) {
             number -= 10000000;
             visible_items.push('increment_upgrade_max');
-            visible_items = visible_items.filter(item => item !== 'max_upgrade_buy');
+            bought_items.push('max_upgrade_buy');
             update();
         }
     }
@@ -71,7 +73,7 @@ function buy(item) {
         if (number >= 100000000) {
             number -= 100000000;
             visible_items.push('idle_box');
-            visible_items = visible_items.filter(item => item !== 'idle_box_buy');
+            bought_items.push('idle_box_buy');
             update(); // Add update here if needed
         }
     }
@@ -94,6 +96,15 @@ function update() {
         }
     });
 
+    shop_items.forEach(item => {
+        // Check if the item's id is in the visibleItems list
+        if (bought_items.includes(item.id)) {
+            item.style.display = 'none';  // Show the item
+        } else {
+            item.style.display = 'inline';   // Hide the item
+        }
+    });
+
     // Update the counter, increment button text, and total display
     document.getElementById('counter').textContent = formattedNumber;
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
@@ -104,6 +115,7 @@ function update() {
 
     // Save the updated values to localStorage
     localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
+    localStorage.setItem('bought_items_save', JSON.stringify(bought_items));
     localStorage.setItem('number_save', number);
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('total_save', total);
