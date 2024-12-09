@@ -139,7 +139,7 @@ function handleButtonStates() {
     const buyMaxUpgrade = document.getElementById('max_upgrade_buy');
     buyMaxUpgrade.disabled = number < 10000000;
 
-    const buyIdleUpgrades = document.getElementById('idle_box');
+    const buyIdleUpgrades = document.getElementById('idle_box_buy');
     buyMaxUpgrade.disabled = number < 100000000;
 }
 
