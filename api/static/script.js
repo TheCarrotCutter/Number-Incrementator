@@ -101,7 +101,7 @@ function update() {
         if (bought_items.includes(item.id)) {
             item.style.display = 'none';  // Show the item
         } else {
-            item.style.display = 'inline';   // Hide the item
+            item.style.display = 'block';   // Hide the item
         }
     });
 
