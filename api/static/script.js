@@ -101,7 +101,7 @@ function update() {
         if (bought_items.includes(item.id)) {
             item.style.display = 'none';  // Show the item
         } else {
-            item.style.display = 'block';   // Hide the item
+            item.style.display = 'inline';   // Hide the item
         }
     });
 
@@ -112,6 +112,7 @@ function update() {
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
+    document.getElementById('idle_box').style.display = 'block';
 
     // Save the updated values to localStorage
     localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
