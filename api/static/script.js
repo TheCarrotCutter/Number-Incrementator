@@ -138,6 +138,9 @@ function handleButtonStates() {
 
     const buyMaxUpgrade = document.getElementById('max_upgrade_buy');
     buyMaxUpgrade.disabled = number < 10000000;
+
+    const buyIdleUpgrades = document.getElementById('idle_box');
+    buyMaxUpgrade.disabled = number < 100000000;
 }
 
 // When the page loads, initialize the display and button state
