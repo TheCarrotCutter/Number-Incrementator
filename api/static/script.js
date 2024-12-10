@@ -1,6 +1,7 @@
 // Load the stored counter value from localStorage, default to 0 if not found
 let number = parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
+let idle_ammount = parseInt(localStorage.getItem('idle_ammount_save')) || 0;
 let total = parseInt(localStorage.getItem('total_save')) || 0;
 
 // Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
@@ -59,6 +60,15 @@ function increment_upgrade_max() {
         update();
     }
 }
+
+function idle_upgrade() {
+     if (number >= idle_price) {
+        number -= idle_price; // Decrease number by the current price for the upgrade
+        idle_ammount += 1; // Increase the increment amount
+        update(); // Update the display and check button state
+    }
+}
+
 function buy(item) {
     if (item === 'max_upgrade') {
         if (number >= 10000000) {
@@ -85,6 +95,7 @@ function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
+    let idle_price = 10000 + idle_ammount;
 
     // Loop through each item (elements with 'showable' class)
     items.forEach(item => {
@@ -123,6 +134,7 @@ function update() {
     localStorage.setItem('bought_items_save', JSON.stringify(bought_items));
     localStorage.setItem('number_save', number);
     localStorage.setItem('increment_ammount_save', increment_ammount);
+    localStorage.setItem('idle_ammount_save', idle_ammount);
     localStorage.setItem('total_save', total);
     localStorage.setItem('price_save', price);
 
