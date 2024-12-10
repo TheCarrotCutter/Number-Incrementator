@@ -12,6 +12,7 @@ const shop_items = document.querySelectorAll('.shop_item'); // Select elements w
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
+let idle_price = 10000 + idle_ammount;
 
 // Function to increment the counter
 function increment() {
@@ -95,7 +96,7 @@ function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
-    let idle_price = 10000 + idle_ammount;
+    idle_price = 10000 + idle_ammount;
 
     // Loop through each item (elements with 'showable' class)
     items.forEach(item => {
@@ -136,7 +137,6 @@ function update() {
     localStorage.setItem('increment_ammount_save', increment_ammount);
     localStorage.setItem('idle_ammount_save', idle_ammount);
     localStorage.setItem('total_save', total);
-    localStorage.setItem('price_save', price);
 
     const upgradeButton = document.getElementById('increment_upgrade');
     upgradeButton.disabled = number < price;
