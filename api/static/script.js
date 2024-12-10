@@ -90,7 +90,12 @@ function update() {
     items.forEach(item => {
         // Check if the item's id is in the visibleItems list
         if (visible_items.includes(item.id)) {
-            item.style.display = 'inline';  // Show the item
+           if (item.tagName === 'DIV') {
+               item.style.display = 'block';  // Show the item
+           } else {
+               item.style.display = 'inline';  // Show the item
+           }
+
         } else {
             item.style.display = 'none';   // Hide the item
         }
@@ -112,7 +117,6 @@ function update() {
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
-    document.getElementById('idle_box').style.display = 'block';
 
     // Save the updated values to localStorage
     localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
