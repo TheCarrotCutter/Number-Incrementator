@@ -129,6 +129,7 @@ function update() {
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
+    document.getElementById('persec_counter').textContent = idle_ammount.toLocaleString() + '/second';
 
     // Save the updated values to localStorage
     localStorage.setItem('visible_items_save', JSON.stringify(visible_items));
