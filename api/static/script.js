@@ -75,7 +75,7 @@ function idle_upgrade() {
     }
 }
 
-function idle_tick() { 
+async function idle_tick() { 
     number += idle_ammount
     console.log("added")
     await sleep(1000)
