@@ -12,7 +12,7 @@ const shop_items = document.querySelectorAll('.shop_item'); // Select elements w
 
 // Starting price of buttons, default to 99 + increment_ammount
 let price = 99 + increment_ammount;
-let idle_price = 10000 + idle_ammount;
+let idle_price = 10000 + (idle_ammount * 100);
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -109,7 +109,7 @@ function update() {
     const formattedNumber = number.toLocaleString();
     const formattedTotal = total.toLocaleString();
     price = 99 + increment_ammount; // Recalculate the price
-    idle_price = 10000 + idle_ammount;
+    idle_price = 10000 + (idle_ammount * 100);
 
     // Loop through each item (elements with 'showable' class)
     items.forEach(item => {
