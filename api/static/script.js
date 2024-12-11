@@ -79,6 +79,7 @@ async function idle_tick() {
     number += idle_ammount
     console.log("added")
     await sleep(1000)
+    update()
     idle_tick()
 }
 
