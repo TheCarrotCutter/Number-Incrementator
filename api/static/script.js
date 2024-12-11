@@ -14,6 +14,11 @@ const shop_items = document.querySelectorAll('.shop_item'); // Select elements w
 let price = 99 + increment_ammount;
 let idle_price = 10000 + idle_ammount;
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by increment_ammount
@@ -68,6 +73,12 @@ function idle_upgrade() {
         idle_ammount += 1; // Increase the increment amount
         update(); // Update the display and check button state
     }
+}
+
+function idle_tick() { 
+    number += idle_ammount
+    sleep(1000)
+    idle_tick()
 }
 
 function buy(item) {
@@ -127,6 +138,7 @@ function update() {
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
+    document.getElementById('idle_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
     document.getElementById('persec_counter').textContent = idle_ammount.toLocaleString() + '/second';
@@ -153,10 +165,16 @@ function update() {
 
     const buyIdleUpgrades = document.getElementById('idle_box_buy');
     buyIdleUpgrades.disabled = number < 100000000;
+
+    const IdleUpgrades = document.getElementById('idle_upgrade');
+    IdleUpgrades.disabled = number < idle_price;
 }
 
 // When the page loads, initialize the display and button state
 document.addEventListener('DOMContentLoaded', function() {
+
+    idle_tick()
+    
     // Ensure that the max upgrade button starts visible
     update();  // Update the display with the value from localStorage and check button state
 });
