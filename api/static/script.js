@@ -140,7 +140,7 @@ function update() {
     document.getElementById('main_button').textContent = 'Increment by +' + increment_ammount.toLocaleString();
     document.getElementById('total').textContent = 'Total: ' + formattedTotal;
     document.getElementById('increment_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
-    document.getElementById('idle_upgrade').textContent = 'Upgrade (' + price.toLocaleString() + ')';
+    document.getElementById('idle_upgrade').textContent = 'Upgrade (' + idle_price.toLocaleString() + ')';
     document.getElementById('increment_upgrade_max').textContent = 'Max Upgrades';
     document.getElementById('increment_upgrade_1000').textContent = 'Upgrade (' + (price * 1000).toLocaleString() + ')';
     document.getElementById('persec_counter').textContent = idle_ammount.toLocaleString() + '/second';
