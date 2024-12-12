@@ -1,15 +1,13 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = 10000000000;//parseInt(localStorage.getItem('number_save')) || 0;
-let increment_ammount = 1;//parseInt(localStorage.getItem('increment_ammount_save')) || 1;
-let idle_ammount = 0;//parseInt(localStorage.getItem('idle_ammount_save')) || 0;
-let total = 0;//parseInt(localStorage.getItem('total_save')) || 0;
+let number = parseInt(localStorage.getItem('number_save')) || 0;
+let increment_ammount = parseInt(localStorage.getItem('increment_ammount_save')) || 1;
+let idle_ammount = parseInt(localStorage.getItem('idle_ammount_save')) || 0;
+let total = parseInt(localStorage.getItem('total_save')) || 0;
 
-// Correctly load visible_items from localStorage, with a fallback to an array containing 'max_upgrade_buy' if not found
-
-let visible_items = [''];//JSON.parse(localStorage.getItem('visible_items_save')) || [''];
+let visible_items = JSON.parse(localStorage.getItem('visible_items_save')) || [''];
 // items that start invisible (if not on the list), and become visible (if on the list)
 
-let bought_items = [''];//JSON.parse(localStorage.getItem('bought_items_save')) || [''];
+let bought_items = JSON.parse(localStorage.getItem('bought_items_save')) || [''];
 // items that start visible (if not on the list), and become invisible (if on the list)
 
 const items = document.querySelectorAll('.showable'); // Select elements with class 'showable'
@@ -22,7 +20,6 @@ let idle_price = 10000 + (idle_ammount * 100);
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 
 // Function to increment the counter
 function increment() {
