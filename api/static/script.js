@@ -21,6 +21,13 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function debug_box_open() {
+    if (document.getElementById('myTextBox').value = "spaghet") {
+        visible_items.push('debug_box')
+        console.log('yay')
+    }        
+}
+
 // Function to increment the counter
 function increment() {
     number += increment_ammount; // Increment the number by increment_ammount
