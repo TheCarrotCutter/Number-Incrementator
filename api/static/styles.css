@@ -21,6 +21,12 @@
     right: 1%;
 }
 
+.debug_code {
+    position: fixed;
+    bottom: 1%;
+    right: 1%;
+}
+
 button {
     font-size: 15px;
     width: auto;
