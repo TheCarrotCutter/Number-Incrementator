@@ -24,6 +24,12 @@
 .debug_code {
     position: fixed;
     bottom: 1%;
+    right: 5%;
+}
+
+.debug_submit_button {
+    position: fixed;
+    bottom: 1%;
     right: 1%;
 }
 
