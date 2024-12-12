@@ -25,6 +25,7 @@ function debug_box_open() {
     if (document.getElementById('myTextBox').value = "spaghet") {
         visible_items.push('debug_box')
         console.log('yay')
+        update()
     }        
 }
 
