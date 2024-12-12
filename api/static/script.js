@@ -1,5 +1,5 @@
 // Load the stored counter value from localStorage, default to 0 if not found
-let number = 10000000;//parseInt(localStorage.getItem('number_save')) || 0;
+let number = 10000000000;//parseInt(localStorage.getItem('number_save')) || 0;
 let increment_ammount = 1;//parseInt(localStorage.getItem('increment_ammount_save')) || 1;
 let idle_ammount = 0;//parseInt(localStorage.getItem('idle_ammount_save')) || 0;
 let total = 0;//parseInt(localStorage.getItem('total_save')) || 0;
