@@ -27,6 +27,11 @@ function reset() {
   update()
 }
 
+function grant() {
+  number += 1000000000000000;
+  update()
+}
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
