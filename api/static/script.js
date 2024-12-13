@@ -34,10 +34,12 @@ function sleep(ms) {
 function debug_box_open() {
     if (document.getElementById('myTextBox').value === "debug_on") {
         visible_items.push('debug_box');
+        console.log("yes")
         update();
     }
     if (document.getElementById('myTextBox').value === "debug_off") {
         visible_items = visible_items.filter(item => item !== 'debug_box');
+        console.log("yes")
         update();
     }
 }
