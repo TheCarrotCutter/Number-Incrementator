@@ -17,6 +17,16 @@ const shop_items = document.querySelectorAll('.shop_item'); // Select elements w
 let price = 99 + increment_ammount;
 let idle_price = 10000 + (idle_ammount * 100);
 
+function reset() {
+  let number == 0;
+  let increment_ammount == 1;
+  let idle_ammount == 0;
+  let total == 0;
+  let visible_items == [''];
+  let bought_items == [''];
+  update()
+}
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
