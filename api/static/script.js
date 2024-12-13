@@ -34,12 +34,10 @@ function sleep(ms) {
 function debug_box_open() {
     if (document.getElementById('debug_code').value === "debug_on") {
         visible_items.push('debug_box');
-        console.log("yes")
         update();
     }
     if (document.getElementById('debug_code').value === "debug_off") {
         visible_items = visible_items.filter(item => item !== 'debug_box');
-        console.log("yes")
         update();
     }
 }
@@ -102,7 +100,6 @@ function idle_upgrade() {
 
 async function idle_tick() { 
     number += idle_ammount
-    console.log("added")
     await sleep(1000)
     update()
     idle_tick()
