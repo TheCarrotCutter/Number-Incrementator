@@ -126,9 +126,16 @@ function buy(item) {
             visible_items.push('idle_box');
             bought_items.push('idle_box_buy');
             update(); // Add update here if needed
+            visible_items.push('idle_max_upgrade_buy')
         }
     }
-}  // This is the closing brace for the 'buy' function
+    if (item === 'idle_max_upgrade') {
+        if (number >= 50000000000) {
+            number -= 50000000000;
+            visible_items = visible_items.filter(item => item !== 'idle_max_upgrade_buy');
+        }
+    }
+}
 
 
 // Function to update the display and save the new value to localStorage
